@@ -3,15 +3,23 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  Flower2,
+  Camera,
   Heart,
   Mail,
   MapPin,
   MessageCircle,
-  Palette,
   Phone,
   Sparkles,
+  Star,
+  Video,
+  Users,
+  Clock,
+  CalendarDays,
+  Send,
+  Flower2,
+  Palette,
   Sun,
+
 } from "lucide-react";
 
 import ImageLightbox from "../components/ImageLightbox";
@@ -1352,406 +1360,575 @@ function Decoration({ setActiveMenu }) {
         ===================================================== */}
 
         <section
-          id="contact"
-          className="
-            scroll-section
-            min-h-screen
-            bg-[#f4ebe6]
-            px-5
-            py-20
-            sm:px-8
-            lg:px-16
-            xl:px-24
-          "
-        >
-          <div className="mx-auto max-w-7xl">
-
-            <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
-
-              {/* CONTACT INFO */}
-
-              <div>
-
-                <p
-                  className="
-                    text-xs
-                    uppercase
-                    tracking-[0.3em]
-                    text-[#9d526e]
-                  "
-                >
-                  Contact Us
-                </p>
-
-                <h2
-                  className="
-                    mt-3
-                    font-serif
-                    text-4xl
-                    leading-tight
-                    text-[#301925]
-                    sm:text-5xl
-                  "
-                >
-                  Let's Decorate
-                  <br />
-
-                  <span className="text-[#9d526e]">
-                    Your Perfect Day
-                  </span>
-                </h2>
-
-                <div className="my-6 flex items-center gap-3">
-
-                  <div className="h-px w-12 bg-[#c9a66b]" />
-
-                  <Heart
-                    size={14}
-                    className="text-[#c9a66b]"
-                    fill="currentColor"
-                  />
-
-                  <div className="h-px w-12 bg-[#c9a66b]" />
-
-                </div>
-
-                <p
-                  className="
-                    max-w-md
-                    text-sm
-                    leading-7
-                    text-[#75676e]
-                  "
-                >
-                  Tell us about your event and let us help
-                  you create a beautiful decoration setup
-                  that your guests will remember.
-                </p>
-
-                <div className="mt-8 space-y-5">
-
-                  {/* PHONE */}
-
-                  <div className="flex items-center gap-4">
-
-                    <div
-                      className="
-                        flex
-                        h-11
-                        w-11
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#ead6dc]
-                      "
-                    >
-                      <Phone
-                        size={18}
-                        className="text-[#9d526e]"
-                      />
-                    </div>
-
-                    <div>
-
-                      <p className="text-xs text-[#9d526e]">
-                        Call Us
-                      </p>
-
-                      <p className="mt-1 text-sm text-[#301925]">
-                        +91 12345 67890
-                      </p>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* WHATSAPP */}
-
-                  <div className="flex items-center gap-4">
-
-                    <div
-                      className="
-                        flex
-                        h-11
-                        w-11
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#ead6dc]
-                      "
-                    >
-                      <MessageCircle
-                        size={18}
-                        className="text-[#9d526e]"
-                      />
-                    </div>
-
-                    <div>
-
-                      <p className="text-xs text-[#9d526e]">
-                        WhatsApp
-                      </p>
-
-                      <button
-                        type="button"
-                        onClick={handleWhatsApp}
-                        className="mt-1 text-sm text-[#301925]"
-                      >
-                        +91 12345 67890
-                      </button>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* EMAIL */}
-
-                  <div className="flex items-center gap-4">
-
-                    <div
-                      className="
-                        flex
-                        h-11
-                        w-11
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#ead6dc]
-                      "
-                    >
-                      <Mail
-                        size={18}
-                        className="text-[#9d526e]"
-                      />
-                    </div>
-
-                    <div>
-
-                      <p className="text-xs text-[#9d526e]">
-                        Email
-                      </p>
-
-                      <p className="mt-1 text-sm text-[#301925]">
-                        info@yourcompany.com
-                      </p>
-
-                    </div>
-
-                  </div>
-
-
-                  {/* ADDRESS */}
-
-                  <div className="flex items-center gap-4">
-
-                    <div
-                      className="
-                        flex
-                        h-11
-                        w-11
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#ead6dc]
-                      "
-                    >
-                      <MapPin
-                        size={18}
-                        className="text-[#9d526e]"
-                      />
-                    </div>
-
-                    <div>
-
-                      <p className="text-xs text-[#9d526e]">
-                        Address
-                      </p>
-
-                      <p
-                        className="
-                          mt-1
-                          text-sm
-                          leading-6
-                          text-[#301925]
-                        "
-                      >
-                        123, Wedding Street,
-                        <br />
-                        Pune, Maharashtra
-                      </p>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-              {/* FORM */}
-
-              <div
-                className="
-                  rounded-2xl
-                  border
-                  border-[#dfd2ca]
-                  bg-white
-                  p-6
-                  shadow-lg
-                  sm:p-8
-                "
-              >
-
-                <div className="mb-6">
-
-                  <p
-                    className="
-                      text-xs
-                      uppercase
-                      tracking-[0.25em]
-                      text-[#9d526e]
-                    "
-                  >
-                    Get In Touch
-                  </p>
-
-                  <h3
-                    className="
-                      mt-2
-                      font-serif
-                      text-2xl
-                      text-[#301925]
-                    "
-                  >
-                    Tell Us About Your Event
-                  </h3>
-
-                </div>
-
-                <form
-                  onSubmit={(event) => {
-                    event.preventDefault();
-                    handleWhatsApp();
-                  }}
-                  className="space-y-4"
-                >
-
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    required
-                    className="
-                      w-full
-                      rounded-xl
-                      border
-                      border-[#dfd2ca]
-                      bg-[#faf7f5]
-                      px-4
-                      py-3.5
-                      text-sm
-                      text-[#301925]
-                      outline-none
-                      placeholder:text-[#a69a9f]
-                      focus:border-[#9d526e]
-                    "
-                  />
-
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    required
-                    className="
-                      w-full
-                      rounded-xl
-                      border
-                      border-[#dfd2ca]
-                      bg-[#faf7f5]
-                      px-4
-                      py-3.5
-                      text-sm
-                      text-[#301925]
-                      outline-none
-                      placeholder:text-[#a69a9f]
-                      focus:border-[#9d526e]
-                    "
-                  />
-
-                  <input
-                    type="date"
-                    className="
-                      w-full
-                      rounded-xl
-                      border
-                      border-[#dfd2ca]
-                      bg-[#faf7f5]
-                      px-4
-                      py-3.5
-                      text-sm
-                      text-[#301925]
-                      outline-none
-                      focus:border-[#9d526e]
-                    "
-                  />
-
-                  <textarea
-                    rows="5"
-                    placeholder="Tell us about your decoration requirements..."
-                    className="
-                      w-full
-                      resize-none
-                      rounded-xl
-                      border
-                      border-[#dfd2ca]
-                      bg-[#faf7f5]
-                      px-4
-                      py-3.5
-                      text-sm
-                      text-[#301925]
-                      outline-none
-                      placeholder:text-[#a69a9f]
-                      focus:border-[#9d526e]
-                    "
-                  />
-
-                  <button
-                    type="submit"
-                    className="
-                      flex
-                      w-full
-                      items-center
-                      justify-center
-                      gap-2
-                      rounded-xl
-                      bg-[#8f4662]
-                      py-3.5
-                      text-sm
-                      font-medium
-                      text-white
-                      transition-all
-                      duration-300
-                      hover:-translate-y-1
-                      hover:bg-[#a45673]
-                    "
-                  >
-                    <MessageCircle size={17} />
-                    Send on WhatsApp
-                  </button>
-
-                </form>
-
-              </div>
-
+  id="contact"
+  className="min-h-screen bg-[#24151F] px-5 py-20 text-[#F8E8EE]"
+>
+  {/* HEADER */}
+  <div className="mx-auto max-w-6xl text-center">
+    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#D9B56D]">
+      Contact Us
+    </p>
+
+    <h2 className="font-serif text-4xl leading-tight text-[#F8E8EE] md:text-5xl">
+      Let's Decorate Your Dream Venue
+    </h2>
+
+    <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#C9AAB7] md:text-base">
+      Tell us about your event, venue and decoration requirements.
+      Our team will help you create a beautiful setup that matches
+      your vision and occasion.
+    </p>
+  </div>
+
+  {/* CONTACT INFORMATION */}
+  <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+    {/* PHONE */}
+    <a
+      href="tel:+919XXXXXXXXX"
+      className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D98FA8] hover:bg-[#3A2230]"
+    >
+      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98FA8]/15">
+        <Phone size={22} className="text-[#D98FA8]" />
+      </div>
+
+      <h3 className="text-lg font-semibold text-[#F8E8EE]">
+        Call Us
+      </h3>
+
+      <p className="mt-2 text-sm text-[#C9AAB7]">
+        +91 XXXXXXXXXX
+      </p>
+
+      <p className="mt-3 text-xs text-[#9F7D8B]">
+        Tap to call directly
+      </p>
+    </a>
+
+    {/* WHATSAPP */}
+    <a
+      href="https://wa.me/91XXXXXXXXXX"
+      target="_blank"
+      rel="noreferrer"
+      className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#3A2230]"
+    >
+      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#25D366]/15">
+        <MessageCircle size={22} className="text-[#25D366]" />
+      </div>
+
+      <h3 className="text-lg font-semibold text-[#F8E8EE]">
+        WhatsApp
+      </h3>
+
+      <p className="mt-2 text-sm text-[#C9AAB7]">
+        Chat with us instantly
+      </p>
+
+      <p className="mt-3 text-xs text-[#9F7D8B]">
+        Quick enquiry & booking
+      </p>
+    </a>
+
+    {/* EMAIL */}
+    <a
+      href="mailto:hello@yourdecoration.com"
+      className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D9B56D] hover:bg-[#3A2230]"
+    >
+      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D9B56D]/15">
+        <Mail size={22} className="text-[#D9B56D]" />
+      </div>
+
+      <h3 className="text-lg font-semibold text-[#F8E8EE]">
+        Email
+      </h3>
+
+      <p className="mt-2 break-all text-sm text-[#C9AAB7]">
+        hello@yourdecoration.com
+      </p>
+
+      <p className="mt-3 text-xs text-[#9F7D8B]">
+        For detailed enquiries
+      </p>
+    </a>
+
+    {/* LOCATION */}
+    <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D98FA8] hover:bg-[#3A2230]">
+      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98FA8]/15">
+        <MapPin size={22} className="text-[#D98FA8]" />
+      </div>
+
+      <h3 className="text-lg font-semibold text-[#F8E8EE]">
+        Location
+      </h3>
+
+      <p className="mt-2 text-sm text-[#C9AAB7]">
+        Pune, Maharashtra
+      </p>
+
+      <p className="mt-3 text-xs text-[#9F7D8B]">
+        Serving Pune & nearby locations
+      </p>
+    </div>
+  </div>
+
+  {/* QUICK RESPONSE */}
+  <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-[#6A4051] bg-gradient-to-r from-[#321D2A] to-[#3A2230] p-6">
+    <div className="flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
+
+      <div className="flex items-start gap-4">
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#D9B56D]/15">
+          <Clock size={22} className="text-[#D9B56D]" />
+        </div>
+
+        <div>
+          <h3 className="font-semibold text-[#F8E8EE]">
+            Quick Response
+          </h3>
+
+          <p className="mt-1 text-sm leading-6 text-[#C9AAB7]">
+            We usually respond to enquiries within a few hours.
+            For urgent requirements, WhatsApp us directly.
+          </p>
+        </div>
+      </div>
+
+      <a
+        href="https://wa.me/91XXXXXXXXXX"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition hover:scale-105"
+      >
+        <MessageCircle size={18} />
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+
+  {/* DECORATION SERVICES + BOOKING */}
+  <div className="mx-auto mt-8 grid max-w-6xl gap-6 lg:grid-cols-2">
+
+    {/* SERVICES */}
+    <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
+
+      <div className="mb-6 flex items-center gap-3">
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D98FA8]/15">
+          <Sparkles size={20} className="text-[#D98FA8]" />
+        </div>
+
+        <div>
+          <h3 className="text-xl font-semibold text-[#F8E8EE]">
+            Our Decoration Services
+          </h3>
+
+          <p className="text-sm text-[#9F7D8B]">
+            Beautiful setups for every occasion
+          </p>
+        </div>
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        {[
+          "Wedding Decoration",
+          "Stage Decoration",
+          "Reception Decoration",
+          "Engagement Decoration",
+          "Floral Decoration",
+          "Theme Decoration",
+          "Lighting Decoration",
+          "Venue Decoration",
+        ].map((service) => (
+          <div
+            key={service}
+            className="flex items-center gap-3 rounded-xl border border-[#4E3040] bg-[#24151F] px-4 py-3"
+          >
+            <Check
+              size={17}
+              className="shrink-0 text-[#D9B56D]"
+            />
+
+            <span className="text-sm text-[#E8CBD5]">
+              {service}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* BOOKING PROCESS */}
+    <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
+
+      <div className="mb-6 flex items-center gap-3">
+        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D9B56D]/15">
+          <CalendarDays
+            size={20}
+            className="text-[#D9B56D]"
+          />
+        </div>
+
+        <div>
+          <h3 className="text-xl font-semibold text-[#F8E8EE]">
+            Booking Process
+          </h3>
+
+          <p className="text-sm text-[#9F7D8B]">
+            Simple & stress-free
+          </p>
+        </div>
+      </div>
+
+      <div className="space-y-5">
+        {[
+          {
+            number: "01",
+            title: "Send Your Enquiry",
+            text: "Share your event date, venue and decoration requirements.",
+          },
+          {
+            number: "02",
+            title: "Discuss Your Theme",
+            text: "We understand your preferred colours, theme and decoration style.",
+          },
+          {
+            number: "03",
+            title: "Confirm Your Booking",
+            text: "Finalize your decoration package and secure your event date.",
+          },
+        ].map((step) => (
+          <div
+            key={step.number}
+            className="flex gap-4"
+          >
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#D98FA8] text-sm font-bold text-white">
+              {step.number}
             </div>
 
+            <div>
+              <h4 className="font-semibold text-[#F8E8EE]">
+                {step.title}
+              </h4>
+
+              <p className="mt-1 text-sm leading-6 text-[#C9AAB7]">
+                {step.text}
+              </p>
+            </div>
           </div>
-        </section>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* ENQUIRY FORM */}
+  <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7 md:p-9">
+
+    <div className="mb-8">
+      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9B56D]">
+        Decoration Enquiry
+      </p>
+
+      <h3 className="mt-2 font-serif text-3xl text-[#F8E8EE]">
+        Tell Us About Your Event
+      </h3>
+
+      <p className="mt-2 text-sm text-[#C9AAB7]">
+        Fill in the details below and send your enquiry directly
+        through WhatsApp.
+      </p>
+    </div>
+
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+
+        const name = formData.get("name");
+        const phone = formData.get("phone");
+        const date = formData.get("date");
+        const venue = formData.get("venue");
+        const eventType = formData.get("eventType");
+        const guests = formData.get("guests");
+        const requirements = formData.get("requirements");
+
+        const whatsappNumber = "91XXXXXXXXXX";
+
+        const message = `
+Hello, I am interested in your decoration services.
+
+Name: ${name}
+Phone: ${phone}
+Event Date: ${date}
+Venue: ${venue}
+Event Type: ${eventType}
+Guests: ${guests}
+
+Decoration Requirements:
+${requirements}
+        `.trim();
+
+        window.open(
+          `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+          "_blank"
+        );
+      }}
+      className="grid gap-5 md:grid-cols-2"
+    >
+
+      {/* NAME */}
+      <div>
+        <label className="mb-2 block text-sm text-[#E8CBD5]">
+          Your Name
+        </label>
+
+        <input
+          name="name"
+          type="text"
+          required
+          placeholder="Enter your name"
+          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+        />
+      </div>
+
+      {/* PHONE */}
+      <div>
+        <label className="mb-2 block text-sm text-[#E8CBD5]">
+          Phone Number
+        </label>
+
+        <input
+          name="phone"
+          type="tel"
+          required
+          placeholder="Enter your phone number"
+          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+        />
+      </div>
+
+      {/* DATE */}
+      <div>
+        <label className="mb-2 block text-sm text-[#E8CBD5]">
+          Event Date
+        </label>
+
+        <input
+          name="date"
+          type="date"
+          required
+          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] outline-none transition focus:border-[#D98FA8]"
+        />
+      </div>
+
+      {/* VENUE */}
+      <div>
+        <label className="mb-2 block text-sm text-[#E8CBD5]">
+          Venue
+        </label>
+
+        <input
+          name="venue"
+          type="text"
+          placeholder="Event venue"
+          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+        />
+      </div>
+
+      {/* EVENT TYPE */}
+      <div>
+        <label className="mb-2 block text-sm text-[#E8CBD5]">
+          Event Type
+        </label>
+
+        <select
+          name="eventType"
+          required
+          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] outline-none transition focus:border-[#D98FA8]"
+        >
+          <option value="">Select event</option>
+          <option value="Wedding">Wedding</option>
+          <option value="Reception">Reception</option>
+          <option value="Engagement">Engagement</option>
+          <option value="Haldi">Haldi</option>
+          <option value="Mehndi">Mehndi</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Corporate Event">Corporate Event</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      {/* GUESTS */}
+      <div>
+        <label className="mb-2 block text-sm text-[#E8CBD5]">
+          Approx. Guests
+        </label>
+
+        <input
+          name="guests"
+          type="number"
+          placeholder="Number of guests"
+          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+        />
+      </div>
+
+      {/* REQUIREMENTS */}
+      <div className="md:col-span-2">
+        <label className="mb-2 block text-sm text-[#E8CBD5]">
+          Decoration Requirements
+        </label>
+
+        <textarea
+          name="requirements"
+          rows="5"
+          placeholder="Tell us about your theme, colours, stage, flowers, lighting, budget, etc."
+          className="w-full resize-none rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+        />
+      </div>
+
+      {/* BUTTON */}
+      <div className="md:col-span-2">
+        <button
+          type="submit"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#D98FA8] px-6 py-4 font-semibold text-white shadow-lg shadow-[#D98FA8]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C97894]"
+        >
+          <Send size={19} />
+          Send Enquiry on WhatsApp
+        </button>
+      </div>
+    </form>
+  </div>
+
+  {/* FAQ */}
+  <div className="mx-auto mt-8 max-w-6xl">
+
+    <div className="mb-6 text-center">
+      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9B56D]">
+        FAQ
+      </p>
+
+      <h3 className="mt-2 font-serif text-3xl text-[#F8E8EE]">
+        Frequently Asked Questions
+      </h3>
+    </div>
+
+    <div className="grid gap-5 md:grid-cols-2">
+      {[
+        {
+          question: "How early should I book decoration?",
+          answer:
+            "We recommend booking as early as possible, especially for popular wedding dates and weekends.",
+        },
+        {
+          question: "Can I customize the decoration theme?",
+          answer:
+            "Yes. We can customize colours, flowers, stage design, lighting and other decoration elements.",
+        },
+        {
+          question: "Do you provide floral decoration?",
+          answer:
+            "Yes. Floral decoration can be included according to your theme and requirements.",
+        },
+        {
+          question: "Do you work outside Pune?",
+          answer:
+            "Yes. We can take decoration projects outside Pune depending on the event and location.",
+        },
+      ].map((faq) => (
+        <div
+          key={faq.question}
+          className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6"
+        >
+          <h4 className="font-semibold text-[#F8E8EE]">
+            {faq.question}
+          </h4>
+
+          <p className="mt-3 text-sm leading-6 text-[#C9AAB7]">
+            {faq.answer}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* LOCATION */}
+  <div className="mx-auto mt-8 max-w-6xl overflow-hidden rounded-2xl border border-[#5A3547] bg-[#321D2A]">
+
+    <div className="grid md:grid-cols-2">
+
+      <div className="flex flex-col justify-center p-8 md:p-10">
+        <MapPin
+          size={25}
+          className="mb-4 text-[#D98FA8]"
+        />
+
+        <h3 className="font-serif text-3xl text-[#F8E8EE]">
+          Based in Pune
+        </h3>
+
+        <p className="mt-3 text-sm leading-7 text-[#C9AAB7]">
+          Serving Pune, Maharashtra and nearby locations for
+          weddings, receptions, engagements and special events.
+        </p>
+
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Pune%2C%20Maharashtra"
+          target="_blank"
+          rel="noreferrer"
+          className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl border border-[#6A4051] bg-[#24151F] px-5 py-3 text-sm font-semibold text-[#E8CBD5] transition hover:border-[#D98FA8] hover:text-[#F8E8EE]"
+        >
+          <MapPin size={17} />
+          Open Location
+        </a>
+      </div>
+
+      <div className="flex min-h-[280px] items-center justify-center bg-[#1B1017] p-8">
+        <div className="text-center">
+
+          <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#D98FA8]/15">
+            <MapPin
+              size={28}
+              className="text-[#D98FA8]"
+            />
+          </div>
+
+          <h4 className="text-xl font-semibold text-[#F8E8EE]">
+            Pune, Maharashtra
+          </h4>
+
+          <p className="mt-2 text-sm text-[#9F7D8B]">
+            Wedding & Event Decoration
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* FINAL CTA */}
+  <div className="mx-auto mt-10 max-w-4xl text-center">
+
+    <Heart
+      size={25}
+      className="mx-auto text-[#D98FA8]"
+      fill="currentColor"
+    />
+
+    <h3 className="mt-4 font-serif text-3xl text-[#F8E8EE]">
+      Let's Make Your Venue Beautiful
+    </h3>
+
+    <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#C9AAB7]">
+      From elegant stages to beautiful floral setups, we create
+      decoration that makes your celebration unforgettable.
+    </p>
+
+    <a
+      href="https://wa.me/91XXXXXXXXXX"
+      target="_blank"
+      rel="noreferrer"
+      className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-7 py-3.5 font-semibold text-white transition hover:scale-105"
+    >
+      <MessageCircle size={19} />
+      Start Your Enquiry
+    </a>
+  </div>
+</section>
 
 
         {/* =====================================================
