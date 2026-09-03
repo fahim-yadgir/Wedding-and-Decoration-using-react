@@ -31,7 +31,18 @@ function SideBar({ activeMenu, setActiveMenu }) {
       "_blank"
     );
   };
+  const handleMenuClick = (id) => {
+  setActiveMenu(id);
 
+  const section = document.getElementById(id);
+
+  if (section) {
+    section.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
   return (
     <aside className="fixed left-0 top-16 bottom-0 z-40 w-[76px] bg-[#160c14] border-r border-[#3d2635] flex flex-col items-center">
       
