@@ -1695,12 +1695,20 @@ ${requirements}
         </label>
 
         <input
-          name="phone"
-          type="tel"
-          required
-          placeholder="Enter your phone number"
-          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
-        />
+  name="phone"
+  type="tel"
+  required
+  placeholder="Enter your phone number"
+  maxLength={10}
+  inputMode="numeric"
+  pattern="[0-9]{10}"
+  onInput={(e) => {
+    e.currentTarget.value = e.currentTarget.value
+      .replace(/[^0-9]/g, "")
+      .slice(0, 10);
+  }}
+  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+/>
       </div>
 
       {/* DATE */}
