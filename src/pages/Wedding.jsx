@@ -68,7 +68,7 @@ const services = [
   const packages = [
     {
       name: "Classic",
-      price: "₹25,000",
+      price: "₹22,000",
       features: [
         "Traditional Photography",
         "Wedding Ceremony Coverage",
@@ -78,7 +78,7 @@ const services = [
     },
     {
       name: "Premium",
-      price: "₹50,000",
+      price: "₹51,000",
       popular: true,
       features: [
         "Traditional Photography",
@@ -90,7 +90,7 @@ const services = [
     },
     {
       name: "Luxury",
-      price: "₹80,000",
+      price: "₹81,000",
       features: [
         "Premium Photography",
         "Cinematic Videography",
