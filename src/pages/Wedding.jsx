@@ -53,6 +53,7 @@ function Wedding({ setActiveMenu }) {
       title: "Complete Wedding",
       text: "Professional photography and videography coverage for your complete wedding celebration.",
     },
+    
   ];
 
   const packages = [
@@ -868,7 +869,7 @@ function Wedding({ setActiveMenu }) {
               >
                 Wedding Services
               </h2>
-
+            
               <div className="my-5 flex items-center justify-center gap-3">
 
                 <div className="h-px w-12 bg-[#c9a66b]" />
