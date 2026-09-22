@@ -32,29 +32,38 @@ function Wedding({ setActiveMenu }) {
     "/images/wedding-6.webp",
   ];
 
-  const services = [
-    {
-      icon: Camera,
-      title: "Wedding Photography",
-      text: "Beautifully capture every special moment, emotion and memory of your wedding day.",
-    },
-    {
-      icon: Video,
-      title: "Wedding Videography",
-      text: "Cinematic wedding films that allow you to relive your most beautiful moments.",
-    },
-    {
-      icon: Heart,
-      title: "Pre-Wedding Shoot",
-      text: "Creative and romantic pre-wedding sessions designed around your story.",
-    },
-    {
-      icon: Sparkles,
-      title: "Complete Wedding",
-      text: "Professional photography and videography coverage for your complete wedding celebration.",
-    },
-    
-  ];
+const services = [
+  {
+    icon: Camera,
+    title: "Wedding Photography",
+    text: "Beautifully capture every special moment, emotion and memory of your wedding day.",
+  },
+  {
+    icon: Video,
+    title: "Wedding Videography",
+    text: "Cinematic wedding films that allow you to relive your most beautiful moments.",
+  },
+  {
+    icon: Heart,
+    title: "Pre-Wedding Shoot",
+    text: "Creative and romantic pre-wedding sessions designed around your story.",
+  },
+  {
+    icon: Sparkles,
+    title: "Complete Wedding",
+    text: "Professional photography and videography coverage for your complete wedding celebration.",
+  },
+  {
+    icon: Camera,
+    title: "Birthday Photography",
+    text: "Capture every smile, celebration and special moment of your birthday.",
+  },
+  {
+    icon: Video,
+    title: "Birthday Videography",
+    text: "Beautiful cinematic videos that preserve the fun and memorable moments of your birthday.",
+  },
+];
 
   const packages = [
     {
@@ -825,162 +834,195 @@ function Wedding({ setActiveMenu }) {
           </div>
         </section>
 
+{/* =====================================================
+    SERVICES
+===================================================== */}
 
-        {/* =====================================================
-            SERVICES
-        ===================================================== */}
+<section
+  id="services"
+  className="
+    scroll-section
+    min-h-screen
+    bg-[#f5eee9]
+    px-5
+    py-20
+    sm:px-8
+    lg:px-16
+    xl:px-24
+  "
+>
+  <div className="mx-auto max-w-7xl">
 
-        <section
-          id="services"
-          className="
-            scroll-section
-            min-h-screen
-            bg-[#f5eee9]
-            px-5
-            py-20
-            sm:px-8
-            lg:px-16
-            xl:px-24
-          "
-        >
-          <div className="mx-auto max-w-7xl">
+    {/* SERVICES HEADER */}
+    <div className="text-center">
 
-            <div className="text-center">
+      <p
+        className="
+          text-xs
+          uppercase
+          tracking-[0.3em]
+          text-[#9d526e]
+        "
+      >
+        What We Offer
+      </p>
 
-              <p
-                className="
-                  text-xs
-                  uppercase
-                  tracking-[0.3em]
-                  text-[#9d526e]
-                "
-              >
-                What We Offer
-              </p>
+      <h2
+        className="
+          mt-3
+          font-serif
+          text-4xl
+          text-[#301925]
+          sm:text-5xl
+        "
+      >
+        Wedding & Event Services
+      </h2>
 
-              <h2
-                className="
-                  mt-3
-                  font-serif
-                  text-4xl
-                  text-[#301925]
-                  sm:text-5xl
-                "
-              >
-                Wedding Services
-              </h2>
-            
-              <div className="my-5 flex items-center justify-center gap-3">
+      <div className="my-5 flex items-center justify-center gap-3">
 
-                <div className="h-px w-12 bg-[#c9a66b]" />
+        <div className="h-px w-12 bg-[#c9a66b]" />
 
-                <Heart
-                  size={14}
-                  className="text-[#c9a66b]"
-                  fill="currentColor"
-                />
+        <Heart
+          size={14}
+          className="text-[#c9a66b]"
+          fill="currentColor"
+        />
 
-                <div className="h-px w-12 bg-[#c9a66b]" />
+        <div className="h-px w-12 bg-[#c9a66b]" />
 
-              </div>
+      </div>
 
-            </div>
+      <p
+        className="
+          mx-auto
+          max-w-xl
+          text-sm
+          leading-6
+          text-[#75676e]
+        "
+      >
+        From weddings to birthday celebrations, we capture
+        every beautiful moment with creativity and care.
+      </p>
 
+    </div>
+
+    {/* SERVICES GRID */}
+    <div
+      className="
+        mt-10
+        grid
+        gap-5
+        sm:grid-cols-2
+        lg:grid-cols-3
+      "
+    >
+
+      {services.map((service) => {
+        const Icon = service.icon;
+
+        return (
+          <div
+            key={service.title}
+            className="
+              group
+              rounded-2xl
+              border
+              border-[#dfd2ca]
+              bg-white
+              p-6
+              text-center
+              shadow-sm
+              transition-all
+              duration-500
+              hover:-translate-y-2
+              hover:shadow-xl
+            "
+          >
+
+            {/* ICON */}
             <div
               className="
-                mt-10
-                grid
-                gap-5
-                sm:grid-cols-2
-                lg:grid-cols-4
+                mx-auto
+                flex
+                h-14
+                w-14
+                items-center
+                justify-center
+                rounded-full
+                bg-[#f5e5e9]
+                transition
+                group-hover:bg-[#8f4662]
               "
             >
-              {services.map((service) => {
-                const Icon = service.icon;
-
-                return (
-                  <div
-                    key={service.title}
-                    className="
-                      group
-                      rounded-2xl
-                      border
-                      border-[#dfd2ca]
-                      bg-white
-                      p-6
-                      text-center
-                      shadow-sm
-                      transition-all
-                      duration-500
-                      hover:-translate-y-2
-                      hover:shadow-xl
-                    "
-                  >
-
-                    <div
-                      className="
-                        mx-auto
-                        flex
-                        h-14
-                        w-14
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-[#f5e5e9]
-                        transition
-                        group-hover:bg-[#8f4662]
-                      "
-                    >
-                      <Icon
-                        size={23}
-                        strokeWidth={1.6}
-                        className="
-                          text-[#9d526e]
-                          transition
-                          group-hover:text-white
-                        "
-                      />
-                    </div>
-
-                    <h3 className="mt-5 font-serif text-xl text-[#301925]">
-                      {service.title}
-                    </h3>
-
-                    <p
-                      className="
-                        mt-3
-                        text-sm
-                        leading-6
-                        text-[#75676e]
-                      "
-                    >
-                      {service.text}
-                    </p>
-
-                    <button
-                      type="button"
-                      onClick={handleWhatsApp}
-                      className="
-                        mt-5
-                        inline-flex
-                        items-center
-                        gap-2
-                        text-xs
-                        font-medium
-                        text-[#9d526e]
-                      "
-                    >
-                      Enquire Now
-                      <ArrowRight size={14} />
-                    </button>
-
-                  </div>
-                );
-              })}
+              <Icon
+                size={23}
+                strokeWidth={1.6}
+                className="
+                  text-[#9d526e]
+                  transition
+                  group-hover:text-white
+                "
+              />
             </div>
 
+            {/* TITLE */}
+            <h3
+              className="
+                mt-5
+                font-serif
+                text-xl
+                text-[#301925]
+              "
+            >
+              {service.title}
+            </h3>
+
+            {/* DESCRIPTION */}
+            <p
+              className="
+                mt-3
+                text-sm
+                leading-6
+                text-[#75676e]
+              "
+            >
+              {service.text}
+            </p>
+
+            {/* ENQUIRE BUTTON */}
+            <button
+              type="button"
+              onClick={handleWhatsApp}
+              className="
+                mt-5
+                inline-flex
+                items-center
+                gap-2
+                text-xs
+                font-medium
+                text-[#9d526e]
+                transition
+                hover:text-[#8f4662]
+              "
+            >
+              Enquire Now
+
+              <ArrowRight
+                size={14}
+                className="transition-transform group-hover:translate-x-1"
+              />
+            </button>
+
           </div>
-        </section>
+        );
+      })}
+
+    </div>
+
+  </div>
+</section>
 
 
         {/* =====================================================
