@@ -3,23 +3,19 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  Camera,
   Heart,
   Mail,
   MapPin,
   MessageCircle,
   Phone,
   Sparkles,
-  Star,
   Video,
-  Users,
   Clock,
   CalendarDays,
   Send,
   Flower2,
   Palette,
   Sun,
-
 } from "lucide-react";
 
 import ImageLightbox from "../components/ImageLightbox";
@@ -95,10 +91,6 @@ function Decoration({ setActiveMenu }) {
     },
   ];
 
-  /* =====================================================
-     WHATSAPP
-  ===================================================== */
-
   const handleWhatsApp = () => {
     const phoneNumber = "91XXXXXXXXXX";
 
@@ -110,10 +102,6 @@ function Decoration({ setActiveMenu }) {
       "_blank"
     );
   };
-
-  /* =====================================================
-     ACTIVE SIDEBAR SECTION
-     ===================================================== */
 
   useEffect(() => {
     const sectionIds = [
@@ -147,7 +135,6 @@ function Decoration({ setActiveMenu }) {
       });
 
       setActiveMenu(currentSection);
-
       ticking = false;
     };
 
@@ -234,16 +221,14 @@ function Decoration({ setActiveMenu }) {
 
       <div className="min-h-screen w-full overflow-x-hidden bg-[#f8f3ef] text-[#301925]">
 
-        {/* =====================================================
-            HOME / HERO
-        ===================================================== */}
-
         <section
           id="home"
           className="
             scroll-section
+            scroll-mt-16
             relative
-            min-h-[calc(100vh-64px)]
+            min-h-screen
+            w-full
             overflow-hidden
             bg-[#24131f]
           "
@@ -259,22 +244,22 @@ function Decoration({ setActiveMenu }) {
               h-full
               w-full
               object-cover
-              object-[62%_center]
+              object-center
               sm:object-[58%_center]
-              md:object-[60%_center]
-              lg:object-[64%_center]
-              xl:object-[62%_center]
+              lg:object-[62%_center]
             "
           />
+
+          <div className="absolute inset-0 bg-black/50" />
 
           <div
             className="
               absolute
               inset-0
               bg-gradient-to-r
-              from-black/75
+              from-black/80
               via-black/45
-              to-black/20
+              to-black/10
             "
           />
 
@@ -283,9 +268,9 @@ function Decoration({ setActiveMenu }) {
               absolute
               inset-0
               bg-gradient-to-t
-              from-[#170d15]/80
+              from-[#170d15]/90
               via-transparent
-              to-transparent
+              to-black/20
             "
           />
 
@@ -294,143 +279,151 @@ function Decoration({ setActiveMenu }) {
               relative
               z-10
               flex
-              min-h-[calc(100svh-64px)]
-              items-end
-              px-5
-              pb-12
-              sm:px-8
-              sm:pb-16
-              lg:items-center
-              lg:px-16
-              lg:pb-0
-              xl:px-24
+              min-h-screen
+              w-full
+              items-center
+              px-6
+              pt-24
+              pb-20
+              sm:px-10
+              lg:px-20
+              xl:px-28
             "
           >
-            <div className="max-w-xl animate-fade-up">
-
-              <p
-                className="
-                  mb-4
-                  text-[10px]
-                  uppercase
-                  tracking-[0.35em]
-                  text-[#e6bd85]
-                  sm:text-xs
-                "
-              >
-                Wedding Decoration
-              </p>
-
-              <h1
-                className="
-                  font-serif
-                  text-4xl
-                  leading-[1.05]
-                  text-white
-                  sm:text-5xl
-                  md:text-6xl
-                  lg:text-7xl
-                "
-              >
-                Beautiful.
-                <br />
-
-                <span className="text-[#e6bd85]">
-                  Elegant.
-                </span>
-
-                <br />
-
-                Unforgettable.
-              </h1>
-
-              <div className="mt-5 flex items-center gap-3">
-                <div className="h-px w-12 bg-[#d4ad72]" />
-
-                <Heart
-                  size={13}
-                  className="text-[#e6bd85]"
-                  fill="currentColor"
-                />
-
-                <div className="h-px w-12 bg-[#d4ad72]" />
-              </div>
-
-              <p
-                className="
-                  mt-5
-                  max-w-md
-                  text-sm
-                  leading-7
-                  text-gray-200
-                  sm:text-base
-                "
-              >
-                Transform your wedding venue into a
-                beautiful celebration filled with flowers,
-                lights, colours and unforgettable details.
-              </p>
-
-              <div className="mt-7 flex flex-wrap gap-3">
-
-                <button
-                  type="button"
-                  onClick={handleWhatsApp}
+            <div className="mx-auto w-full max-w-7xl">
+              <div className="max-w-2xl animate-fade-up">
+                <p
                   className="
-                    group
-                    flex
-                    items-center
-                    gap-2
-                    rounded-lg
-                    bg-[#e6bd85]
-                    px-6
-                    py-3.5
-                    text-sm
-                    font-medium
-                    text-[#2b1722]
-                    shadow-xl
-                    transition-all
-                    duration-300
-                    hover:-translate-y-1
-                    hover:bg-[#f0cc9b]
+                    mb-5
+                    text-[10px]
+                    uppercase
+                    tracking-[0.4em]
+                    text-[#e6bd85]
+                    sm:text-xs
                   "
                 >
-                  Plan Your Decoration
+                  Wedding Decoration
+                </p>
 
-                  <ArrowRight
-                    size={17}
-                    className="transition-transform group-hover:translate-x-1"
-                  />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() =>
-                    document
-                      .getElementById("gallery")
-                      ?.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                      })
-                  }
+                <h1
                   className="
-                    flex
-                    items-center
-                    gap-2
-                    rounded-lg
-                    border
-                    border-white/50
-                    px-6
-                    py-3.5
-                    text-sm
+                    font-serif
+                    text-5xl
+                    leading-[0.95]
                     text-white
-                    transition
-                    hover:bg-white/10
+                    sm:text-6xl
+                    md:text-7xl
+                    lg:text-8xl
                   "
                 >
-                  View Gallery
-                </button>
+                  Beautiful.
+                  <br />
 
+                  <span className="text-[#e6bd85]">
+                    Elegant.
+                  </span>
+
+                  <br />
+
+                  Unforgettable.
+                </h1>
+
+                <div className="mt-7 flex items-center gap-3">
+                  <div className="h-px w-14 bg-[#d4ad72]" />
+
+                  <Heart
+                    size={14}
+                    className="text-[#e6bd85]"
+                    fill="currentColor"
+                  />
+
+                  <div className="h-px w-14 bg-[#d4ad72]" />
+                </div>
+
+                <p
+                  className="
+                    mt-6
+                    max-w-xl
+                    text-sm
+                    leading-7
+                    text-white/80
+                    sm:text-base
+                    sm:leading-8
+                  "
+                >
+                  Transform your wedding venue into a beautiful
+                  celebration filled with flowers, lights, colours
+                  and unforgettable details.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <button
+                    type="button"
+                    onClick={handleWhatsApp}
+                    className="
+                      group
+                      flex
+                      items-center
+                      gap-3
+                      rounded-xl
+                      bg-[#e6bd85]
+                      px-7
+                      py-4
+                      text-sm
+                      font-medium
+                      text-[#2b1722]
+                      shadow-[0_15px_40px_rgba(0,0,0,0.3)]
+                      transition-all
+                      duration-300
+                      hover:-translate-y-1
+                      hover:bg-[#f0cc9b]
+                    "
+                  >
+                    Plan Your Decoration
+
+                    <ArrowRight
+                      size={17}
+                      className="
+                        transition-transform
+                        duration-300
+                        group-hover:translate-x-1
+                      "
+                    />
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() =>
+                      document
+                        .getElementById("gallery")
+                        ?.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        })
+                    }
+                    className="
+                      flex
+                      items-center
+                      gap-3
+                      rounded-xl
+                      border
+                      border-white/30
+                      bg-white/5
+                      px-7
+                      py-4
+                      text-sm
+                      text-white
+                      backdrop-blur-md
+                      transition-all
+                      duration-300
+                      hover:-translate-y-1
+                      hover:bg-white/15
+                      hover:border-white/50
+                    "
+                  >
+                    View Gallery
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -438,27 +431,31 @@ function Decoration({ setActiveMenu }) {
           <div
             className="
               absolute
-              bottom-5
+              bottom-7
               left-1/2
               z-20
               -translate-x-1/2
-              animate-bounce
-              text-white/70
+              text-white/60
             "
           >
-            <ChevronDown size={20} />
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[8px] uppercase tracking-[0.3em]">
+                Scroll
+              </span>
+
+              <ChevronDown
+                size={18}
+                className="animate-bounce"
+              />
+            </div>
           </div>
         </section>
-
-
-        {/* =====================================================
-            ABOUT
-        ===================================================== */}
 
         <section
           id="about"
           className="
             scroll-section
+            scroll-mt-16
             relative
             min-h-screen
             bg-[#f8f3ef]
@@ -472,7 +469,6 @@ function Decoration({ setActiveMenu }) {
           "
         >
           <div className="mx-auto w-full max-w-7xl">
-
             <div
               className="
                 grid
@@ -482,11 +478,8 @@ function Decoration({ setActiveMenu }) {
                 lg:gap-16
               "
             >
-
               <div className="animate-slide-left">
-
                 <div className="relative">
-
                   <div
                     className="
                       absolute
@@ -538,13 +531,10 @@ function Decoration({ setActiveMenu }) {
                       Designed With Love
                     </p>
                   </div>
-
                 </div>
               </div>
 
-
               <div className="animate-slide-right">
-
                 <p
                   className="
                     text-xs
@@ -575,7 +565,6 @@ function Decoration({ setActiveMenu }) {
                 </h2>
 
                 <div className="my-6 flex items-center gap-3">
-
                   <div className="h-px w-12 bg-[#c9a66b]" />
 
                   <Heart
@@ -585,7 +574,6 @@ function Decoration({ setActiveMenu }) {
                   />
 
                   <div className="h-px w-12 bg-[#c9a66b]" />
-
                 </div>
 
                 <p
@@ -617,7 +605,6 @@ function Decoration({ setActiveMenu }) {
                 </p>
 
                 <div className="mt-7 grid grid-cols-2 gap-4">
-
                   <div
                     className="
                       rounded-xl
@@ -653,7 +640,6 @@ function Decoration({ setActiveMenu }) {
                       Years Experience
                     </p>
                   </div>
-
                 </div>
 
                 <button
@@ -678,23 +664,16 @@ function Decoration({ setActiveMenu }) {
                   Know More
                   <ArrowRight size={16} />
                 </button>
-
               </div>
-
             </div>
-
           </div>
         </section>
-
-
-        {/* =====================================================
-            GALLERY
-        ===================================================== */}
 
         <section
           id="gallery"
           className="
             scroll-section
+            scroll-mt-16
             min-h-screen
             bg-[#fffaf7]
             px-5
@@ -705,9 +684,7 @@ function Decoration({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-
             <div className="text-center animate-fade-up">
-
               <p
                 className="
                   text-xs
@@ -732,7 +709,6 @@ function Decoration({ setActiveMenu }) {
               </h2>
 
               <div className="my-5 flex items-center justify-center gap-3">
-
                 <div className="h-px w-12 bg-[#c9a66b]" />
 
                 <Heart
@@ -742,7 +718,6 @@ function Decoration({ setActiveMenu }) {
                 />
 
                 <div className="h-px w-12 bg-[#c9a66b]" />
-
               </div>
 
               <p
@@ -757,7 +732,6 @@ function Decoration({ setActiveMenu }) {
                 Explore some of our beautiful wedding
                 decoration setups and creative designs.
               </p>
-
             </div>
 
             <div
@@ -803,19 +777,14 @@ function Decoration({ setActiveMenu }) {
                 </button>
               ))}
             </div>
-
           </div>
         </section>
-
-
-        {/* =====================================================
-            SERVICES
-        ===================================================== */}
 
         <section
           id="services"
           className="
             scroll-section
+            scroll-mt-16
             min-h-screen
             bg-[#f5eee9]
             px-5
@@ -826,9 +795,7 @@ function Decoration({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-
             <div className="text-center">
-
               <p
                 className="
                   text-xs
@@ -853,7 +820,6 @@ function Decoration({ setActiveMenu }) {
               </h2>
 
               <div className="my-5 flex items-center justify-center gap-3">
-
                 <div className="h-px w-12 bg-[#c9a66b]" />
 
                 <Heart
@@ -863,9 +829,7 @@ function Decoration({ setActiveMenu }) {
                 />
 
                 <div className="h-px w-12 bg-[#c9a66b]" />
-
               </div>
-
             </div>
 
             <div
@@ -901,7 +865,6 @@ function Decoration({ setActiveMenu }) {
                       animationDelay: `${index * 100}ms`,
                     }}
                   >
-
                     <div
                       className="
                         mx-auto
@@ -958,24 +921,18 @@ function Decoration({ setActiveMenu }) {
                       Enquire Now
                       <ArrowRight size={14} />
                     </button>
-
                   </div>
                 );
               })}
             </div>
-
           </div>
         </section>
-
-
-        {/* =====================================================
-            PACKAGES
-        ===================================================== */}
 
         <section
           id="packages"
           className="
             scroll-section
+            scroll-mt-16
             min-h-screen
             bg-[#291622]
             px-5
@@ -987,9 +944,7 @@ function Decoration({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-
             <div className="text-center">
-
               <p
                 className="
                   text-xs
@@ -1006,7 +961,6 @@ function Decoration({ setActiveMenu }) {
               </h2>
 
               <div className="my-5 flex items-center justify-center gap-3">
-
                 <div className="h-px w-12 bg-[#c9a66b]" />
 
                 <Heart
@@ -1016,7 +970,6 @@ function Decoration({ setActiveMenu }) {
                 />
 
                 <div className="h-px w-12 bg-[#c9a66b]" />
-
               </div>
 
               <p
@@ -1031,11 +984,9 @@ function Decoration({ setActiveMenu }) {
                 Beautiful decoration packages created for
                 celebrations of every size.
               </p>
-
             </div>
 
             <div className="mt-10 grid gap-5 lg:grid-cols-3">
-
               {packages.map((pkg) => (
                 <div
                   key={pkg.name}
@@ -1056,7 +1007,6 @@ function Decoration({ setActiveMenu }) {
                     }
                   `}
                 >
-
                   {pkg.popular && (
                     <div
                       className="
@@ -1097,7 +1047,6 @@ function Decoration({ setActiveMenu }) {
                   <div className="my-6 h-px bg-white/10" />
 
                   <div className="flex-1 space-y-4">
-
                     {pkg.features.map((feature) => (
                       <div
                         key={feature}
@@ -1130,7 +1079,6 @@ function Decoration({ setActiveMenu }) {
                         {feature}
                       </div>
                     ))}
-
                   </div>
 
                   <button
@@ -1154,24 +1102,17 @@ function Decoration({ setActiveMenu }) {
                     Enquire on WhatsApp
                     <ArrowRight size={15} />
                   </button>
-
                 </div>
               ))}
-
             </div>
-
           </div>
         </section>
-
-
-        {/* =====================================================
-            VIDEOS
-        ===================================================== */}
 
         <section
           id="videos"
           className="
             scroll-section
+            scroll-mt-16
             min-h-screen
             bg-[#fffaf7]
             px-5
@@ -1182,9 +1123,7 @@ function Decoration({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-
             <div className="text-center">
-
               <p
                 className="
                   text-xs
@@ -1209,7 +1148,6 @@ function Decoration({ setActiveMenu }) {
               </h2>
 
               <div className="my-5 flex items-center justify-center gap-3">
-
                 <div className="h-px w-12 bg-[#c9a66b]" />
 
                 <Heart
@@ -1219,15 +1157,10 @@ function Decoration({ setActiveMenu }) {
                 />
 
                 <div className="h-px w-12 bg-[#c9a66b]" />
-
               </div>
-
             </div>
 
             <div className="mt-10 grid gap-6 md:grid-cols-2">
-
-              {/* VIDEO 1 */}
-
               <div
                 className="
                   group
@@ -1244,7 +1177,6 @@ function Decoration({ setActiveMenu }) {
                 "
               >
                 <div className="relative overflow-hidden">
-
                   <video
                     controls
                     preload="none"
@@ -1257,11 +1189,9 @@ function Decoration({ setActiveMenu }) {
                       type="video/mp4"
                     />
                   </video>
-
                 </div>
 
                 <div className="p-5">
-
                   <p
                     className="
                       text-[10px]
@@ -1283,12 +1213,8 @@ function Decoration({ setActiveMenu }) {
                   >
                     Decoration Highlights
                   </h3>
-
                 </div>
               </div>
-
-
-              {/* VIDEO 2 */}
 
               <div
                 className="
@@ -1306,7 +1232,6 @@ function Decoration({ setActiveMenu }) {
                 "
               >
                 <div className="relative overflow-hidden">
-
                   <video
                     controls
                     preload="none"
@@ -1319,11 +1244,9 @@ function Decoration({ setActiveMenu }) {
                       type="video/mp4"
                     />
                   </video>
-
                 </div>
 
                 <div className="p-5">
-
                   <p
                     className="
                       text-[10px]
@@ -1345,313 +1268,296 @@ function Decoration({ setActiveMenu }) {
                   >
                     Special Decoration
                   </h3>
-
                 </div>
               </div>
-
             </div>
-
           </div>
         </section>
 
-
-        {/* =====================================================
-            CONTACT
-        ===================================================== */}
-
         <section
-  id="contact"
-  className="min-h-screen bg-[#24151F] px-5 py-20 text-[#F8E8EE]"
->
-  {/* HEADER */}
-  <div className="mx-auto max-w-6xl text-center">
-    <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#D9B56D]">
-      Contact Us
-    </p>
+          id="contact"
+          className="
+            scroll-section
+            scroll-mt-16
+            min-h-screen
+            bg-[#24151F]
+            px-5
+            py-20
+            text-[#F8E8EE]
+          "
+        >
+          <div className="mx-auto max-w-6xl text-center">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#D9B56D]">
+              Contact Us
+            </p>
 
-    <h2 className="font-serif text-4xl leading-tight text-[#F8E8EE] md:text-5xl">
-      Let's Decorate Your Dream Venue
-    </h2>
+            <h2 className="font-serif text-4xl leading-tight text-[#F8E8EE] md:text-5xl">
+              Let's Decorate Your Dream Venue
+            </h2>
 
-    <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#C9AAB7] md:text-base">
-      Tell us about your event, venue and decoration requirements.
-      Our team will help you create a beautiful setup that matches
-      your vision and occasion.
-    </p>
-  </div>
-
-  {/* CONTACT INFORMATION */}
-  <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
-
-    {/* PHONE */}
-    <a
-      href="tel:+919XXXXXXXXX"
-      className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D98FA8] hover:bg-[#3A2230]"
-    >
-      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98FA8]/15">
-        <Phone size={22} className="text-[#D98FA8]" />
-      </div>
-
-      <h3 className="text-lg font-semibold text-[#F8E8EE]">
-        Call Us
-      </h3>
-
-      <p className="mt-2 text-sm text-[#C9AAB7]">
-        +91 XXXXXXXXXX
-      </p>
-
-      <p className="mt-3 text-xs text-[#9F7D8B]">
-        Tap to call directly
-      </p>
-    </a>
-
-    {/* WHATSAPP */}
-    <a
-      href="https://wa.me/91XXXXXXXXXX"
-      target="_blank"
-      rel="noreferrer"
-      className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#3A2230]"
-    >
-      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#25D366]/15">
-        <MessageCircle size={22} className="text-[#25D366]" />
-      </div>
-
-      <h3 className="text-lg font-semibold text-[#F8E8EE]">
-        WhatsApp
-      </h3>
-
-      <p className="mt-2 text-sm text-[#C9AAB7]">
-        Chat with us instantly
-      </p>
-
-      <p className="mt-3 text-xs text-[#9F7D8B]">
-        Quick enquiry & booking
-      </p>
-    </a>
-
-    {/* EMAIL */}
-    <a
-      href="mailto:hello@yourdecoration.com"
-      className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D9B56D] hover:bg-[#3A2230]"
-    >
-      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D9B56D]/15">
-        <Mail size={22} className="text-[#D9B56D]" />
-      </div>
-
-      <h3 className="text-lg font-semibold text-[#F8E8EE]">
-        Email
-      </h3>
-
-      <p className="mt-2 break-all text-sm text-[#C9AAB7]">
-        hello@yourdecoration.com
-      </p>
-
-      <p className="mt-3 text-xs text-[#9F7D8B]">
-        For detailed enquiries
-      </p>
-    </a>
-
-    {/* LOCATION */}
-    <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D98FA8] hover:bg-[#3A2230]">
-      <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98FA8]/15">
-        <MapPin size={22} className="text-[#D98FA8]" />
-      </div>
-
-      <h3 className="text-lg font-semibold text-[#F8E8EE]">
-        Location
-      </h3>
-
-      <p className="mt-2 text-sm text-[#C9AAB7]">
-        Pune, Maharashtra
-      </p>
-
-      <p className="mt-3 text-xs text-[#9F7D8B]">
-        Serving Pune & nearby locations
-      </p>
-    </div>
-  </div>
-
-  {/* QUICK RESPONSE */}
-  <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-[#6A4051] bg-gradient-to-r from-[#321D2A] to-[#3A2230] p-6">
-    <div className="flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
-
-      <div className="flex items-start gap-4">
-        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#D9B56D]/15">
-          <Clock size={22} className="text-[#D9B56D]" />
-        </div>
-
-        <div>
-          <h3 className="font-semibold text-[#F8E8EE]">
-            Quick Response
-          </h3>
-
-          <p className="mt-1 text-sm leading-6 text-[#C9AAB7]">
-            We usually respond to enquiries within a few hours.
-            For urgent requirements, WhatsApp us directly.
-          </p>
-        </div>
-      </div>
-
-      <a
-        href="https://wa.me/91XXXXXXXXXX"
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition hover:scale-105"
-      >
-        <MessageCircle size={18} />
-        WhatsApp Us
-      </a>
-    </div>
-  </div>
-
-  {/* DECORATION SERVICES + BOOKING */}
-  <div className="mx-auto mt-8 grid max-w-6xl gap-6 lg:grid-cols-2">
-
-    {/* SERVICES */}
-    <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
-
-      <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D98FA8]/15">
-          <Sparkles size={20} className="text-[#D98FA8]" />
-        </div>
-
-        <div>
-          <h3 className="text-xl font-semibold text-[#F8E8EE]">
-            Our Decoration Services
-          </h3>
-
-          <p className="text-sm text-[#9F7D8B]">
-            Beautiful setups for every occasion
-          </p>
-        </div>
-      </div>
-
-      <div className="grid gap-3 sm:grid-cols-2">
-        {[
-          "Wedding Decoration",
-          "Stage Decoration",
-          "Reception Decoration",
-          "Engagement Decoration",
-          "Floral Decoration",
-          "Theme Decoration",
-          "Lighting Decoration",
-          "Venue Decoration",
-        ].map((service) => (
-          <div
-            key={service}
-            className="flex items-center gap-3 rounded-xl border border-[#4E3040] bg-[#24151F] px-4 py-3"
-          >
-            <Check
-              size={17}
-              className="shrink-0 text-[#D9B56D]"
-            />
-
-            <span className="text-sm text-[#E8CBD5]">
-              {service}
-            </span>
+            <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#C9AAB7] md:text-base">
+              Tell us about your event, venue and decoration requirements.
+              Our team will help you create a beautiful setup that matches
+              your vision and occasion.
+            </p>
           </div>
-        ))}
-      </div>
-    </div>
 
-    {/* BOOKING PROCESS */}
-    <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
+          <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <a
+              href="tel:+919XXXXXXXXX"
+              className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D98FA8] hover:bg-[#3A2230]"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98FA8]/15">
+                <Phone size={22} className="text-[#D98FA8]" />
+              </div>
 
-      <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D9B56D]/15">
-          <CalendarDays
-            size={20}
-            className="text-[#D9B56D]"
-          />
-        </div>
+              <h3 className="text-lg font-semibold text-[#F8E8EE]">
+                Call Us
+              </h3>
 
-        <div>
-          <h3 className="text-xl font-semibold text-[#F8E8EE]">
-            Booking Process
-          </h3>
+              <p className="mt-2 text-sm text-[#C9AAB7]">
+                +91 XXXXXXXXXX
+              </p>
 
-          <p className="text-sm text-[#9F7D8B]">
-            Simple & stress-free
-          </p>
-        </div>
-      </div>
+              <p className="mt-3 text-xs text-[#9F7D8B]">
+                Tap to call directly
+              </p>
+            </a>
 
-      <div className="space-y-5">
-        {[
-          {
-            number: "01",
-            title: "Send Your Enquiry",
-            text: "Share your event date, venue and decoration requirements.",
-          },
-          {
-            number: "02",
-            title: "Discuss Your Theme",
-            text: "We understand your preferred colours, theme and decoration style.",
-          },
-          {
-            number: "03",
-            title: "Confirm Your Booking",
-            text: "Finalize your decoration package and secure your event date.",
-          },
-        ].map((step) => (
-          <div
-            key={step.number}
-            className="flex gap-4"
-          >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#D98FA8] text-sm font-bold text-white">
-              {step.number}
-            </div>
+            <a
+              href="https://wa.me/91XXXXXXXXXX"
+              target="_blank"
+              rel="noreferrer"
+              className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#3A2230]"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#25D366]/15">
+                <MessageCircle size={22} className="text-[#25D366]" />
+              </div>
 
-            <div>
-              <h4 className="font-semibold text-[#F8E8EE]">
-                {step.title}
-              </h4>
+              <h3 className="text-lg font-semibold text-[#F8E8EE]">
+                WhatsApp
+              </h3>
 
-              <p className="mt-1 text-sm leading-6 text-[#C9AAB7]">
-                {step.text}
+              <p className="mt-2 text-sm text-[#C9AAB7]">
+                Chat with us instantly
+              </p>
+
+              <p className="mt-3 text-xs text-[#9F7D8B]">
+                Quick enquiry & booking
+              </p>
+            </a>
+
+            <a
+              href="mailto:hello@yourdecoration.com"
+              className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D9B56D] hover:bg-[#3A2230]"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D9B56D]/15">
+                <Mail size={22} className="text-[#D9B56D]" />
+              </div>
+
+              <h3 className="text-lg font-semibold text-[#F8E8EE]">
+                Email
+              </h3>
+
+              <p className="mt-2 break-all text-sm text-[#C9AAB7]">
+                hello@yourdecoration.com
+              </p>
+
+              <p className="mt-3 text-xs text-[#9F7D8B]">
+                For detailed enquiries
+              </p>
+            </a>
+
+            <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D98FA8] hover:bg-[#3A2230]">
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98FA8]/15">
+                <MapPin size={22} className="text-[#D98FA8]" />
+              </div>
+
+              <h3 className="text-lg font-semibold text-[#F8E8EE]">
+                Location
+              </h3>
+
+              <p className="mt-2 text-sm text-[#C9AAB7]">
+                Pune, Maharashtra
+              </p>
+
+              <p className="mt-3 text-xs text-[#9F7D8B]">
+                Serving Pune & nearby locations
               </p>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </div>
 
-  {/* ENQUIRY FORM */}
-  <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7 md:p-9">
+          <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-[#6A4051] bg-gradient-to-r from-[#321D2A] to-[#3A2230] p-6">
+            <div className="flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#D9B56D]/15">
+                  <Clock size={22} className="text-[#D9B56D]" />
+                </div>
 
-    <div className="mb-8">
-      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9B56D]">
-        Decoration Enquiry
-      </p>
+                <div>
+                  <h3 className="font-semibold text-[#F8E8EE]">
+                    Quick Response
+                  </h3>
 
-      <h3 className="mt-2 font-serif text-3xl text-[#F8E8EE]">
-        Tell Us About Your Event
-      </h3>
+                  <p className="mt-1 text-sm leading-6 text-[#C9AAB7]">
+                    We usually respond to enquiries within a few hours.
+                    For urgent requirements, WhatsApp us directly.
+                  </p>
+                </div>
+              </div>
 
-      <p className="mt-2 text-sm text-[#C9AAB7]">
-        Fill in the details below and send your enquiry directly
-        through WhatsApp.
-      </p>
-    </div>
+              <a
+                href="https://wa.me/91XXXXXXXXXX"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition hover:scale-105"
+              >
+                <MessageCircle size={18} />
+                WhatsApp Us
+              </a>
+            </div>
+          </div>
 
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
+          <div className="mx-auto mt-8 grid max-w-6xl gap-6 lg:grid-cols-2">
+            <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D98FA8]/15">
+                  <Sparkles size={20} className="text-[#D98FA8]" />
+                </div>
 
-        const formData = new FormData(event.currentTarget);
+                <div>
+                  <h3 className="text-xl font-semibold text-[#F8E8EE]">
+                    Our Decoration Services
+                  </h3>
 
-        const name = formData.get("name");
-        const phone = formData.get("phone");
-        const date = formData.get("date");
-        const venue = formData.get("venue");
-        const eventType = formData.get("eventType");
-        const guests = formData.get("guests");
-        const requirements = formData.get("requirements");
+                  <p className="text-sm text-[#9F7D8B]">
+                    Beautiful setups for every occasion
+                  </p>
+                </div>
+              </div>
 
-        const whatsappNumber = "91XXXXXXXXXX";
+              <div className="grid gap-3 sm:grid-cols-2">
+                {[
+                  "Wedding Decoration",
+                  "Stage Decoration",
+                  "Reception Decoration",
+                  "Engagement Decoration",
+                  "Floral Decoration",
+                  "Theme Decoration",
+                  "Lighting Decoration",
+                  "Venue Decoration",
+                ].map((service) => (
+                  <div
+                    key={service}
+                    className="flex items-center gap-3 rounded-xl border border-[#4E3040] bg-[#24151F] px-4 py-3"
+                  >
+                    <Check
+                      size={17}
+                      className="shrink-0 text-[#D9B56D]"
+                    />
 
-        const message = `
+                    <span className="text-sm text-[#E8CBD5]">
+                      {service}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D9B56D]/15">
+                  <CalendarDays
+                    size={20}
+                    className="text-[#D9B56D]"
+                  />
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-[#F8E8EE]">
+                    Booking Process
+                  </h3>
+
+                  <p className="text-sm text-[#9F7D8B]">
+                    Simple & stress-free
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-5">
+                {[
+                  {
+                    number: "01",
+                    title: "Send Your Enquiry",
+                    text: "Share your event date, venue and decoration requirements.",
+                  },
+                  {
+                    number: "02",
+                    title: "Discuss Your Theme",
+                    text: "We understand your preferred colours, theme and decoration style.",
+                  },
+                  {
+                    number: "03",
+                    title: "Confirm Your Booking",
+                    text: "Finalize your decoration package and secure your event date.",
+                  },
+                ].map((step) => (
+                  <div
+                    key={step.number}
+                    className="flex gap-4"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#D98FA8] text-sm font-bold text-white">
+                      {step.number}
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-[#F8E8EE]">
+                        {step.title}
+                      </h4>
+
+                      <p className="mt-1 text-sm leading-6 text-[#C9AAB7]">
+                        {step.text}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7 md:p-9">
+            <div className="mb-8">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9B56D]">
+                Decoration Enquiry
+              </p>
+
+              <h3 className="mt-2 font-serif text-3xl text-[#F8E8EE]">
+                Tell Us About Your Event
+              </h3>
+
+              <p className="mt-2 text-sm text-[#C9AAB7]">
+                Fill in the details below and send your enquiry directly
+                through WhatsApp.
+              </p>
+            </div>
+
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+
+                const formData = new FormData(event.currentTarget);
+
+                const name = formData.get("name");
+                const phone = formData.get("phone");
+                const date = formData.get("date");
+                const venue = formData.get("venue");
+                const eventType = formData.get("eventType");
+                const guests = formData.get("guests");
+                const requirements = formData.get("requirements");
+
+                const whatsappNumber = "91XXXXXXXXXX";
+
+                const message = `
 Hello, I am interested in your decoration services.
 
 Name: ${name}
@@ -1663,285 +1569,267 @@ Guests: ${guests}
 
 Decoration Requirements:
 ${requirements}
-        `.trim();
+                `.trim();
 
-        window.open(
-          `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
-          "_blank"
-        );
-      }}
-      className="grid gap-5 md:grid-cols-2"
-    >
+                window.open(
+                  `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                    message
+                  )}`,
+                  "_blank"
+                );
+              }}
+              className="grid gap-5 md:grid-cols-2"
+            >
+              <div>
+                <label className="mb-2 block text-sm text-[#E8CBD5]">
+                  Your Name
+                </label>
 
-      {/* NAME */}
-      <div>
-        <label className="mb-2 block text-sm text-[#E8CBD5]">
-          Your Name
-        </label>
+                <input
+                  name="name"
+                  type="text"
+                  required
+                  placeholder="Enter your name"
+                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+                />
+              </div>
 
-        <input
-          name="name"
-          type="text"
-          required
-          placeholder="Enter your name"
-          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
-        />
-      </div>
+              <div>
+                <label className="mb-2 block text-sm text-[#E8CBD5]">
+                  Phone Number
+                </label>
 
-      {/* PHONE */}
-      <div>
-        <label className="mb-2 block text-sm text-[#E8CBD5]">
-          Phone Number
-        </label>
+                <input
+                  name="phone"
+                  type="tel"
+                  required
+                  placeholder="Enter your phone number"
+                  maxLength={10}
+                  inputMode="numeric"
+                  pattern="[0-9]{10}"
+                  onInput={(e) => {
+                    e.currentTarget.value = e.currentTarget.value
+                      .replace(/[^0-9]/g, "")
+                      .slice(0, 10);
+                  }}
+                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+                />
+              </div>
 
-        <input
-        name="phone"
-        type="tel"
-        required
-        placeholder="Enter your phone number"
-        maxLength={10}
-        inputMode="numeric"
-        pattern="[0-9]{10}"
-        onInput={(e) => {
-          e.currentTarget.value = e.currentTarget.value
-          .replace(/[^0-9]/g, "")
-          .slice(0, 10);
-  }}
-  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
-/>
-      </div>
+              <div>
+                <label className="mb-2 block text-sm text-[#E8CBD5]">
+                  Event Date
+                </label>
 
-      {/* DATE */}
-      <div>
-        <label className="mb-2 block text-sm text-[#E8CBD5]">
-          Event Date
-        </label>
+                <input
+                  name="date"
+                  type="date"
+                  required
+                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] outline-none transition focus:border-[#D98FA8]"
+                />
+              </div>
 
-        <input
-          name="date"
-          type="date"
-          required
-          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] outline-none transition focus:border-[#D98FA8]"
-        />
-      </div>
+              <div>
+                <label className="mb-2 block text-sm text-[#E8CBD5]">
+                  Venue
+                </label>
 
-      {/* VENUE */}
-      <div>
-        <label className="mb-2 block text-sm text-[#E8CBD5]">
-          Venue
-        </label>
+                <input
+                  name="venue"
+                  type="text"
+                  placeholder="Event venue"
+                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+                />
+              </div>
 
-        <input
-          name="venue"
-          type="text"
-          placeholder="Event venue"
-          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
-        />
-      </div>
+              <div>
+                <label className="mb-2 block text-sm text-[#E8CBD5]">
+                  Event Type
+                </label>
 
-      {/* EVENT TYPE */}
-      <div>
-        <label className="mb-2 block text-sm text-[#E8CBD5]">
-          Event Type
-        </label>
+                <select
+                  name="eventType"
+                  required
+                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] outline-none transition focus:border-[#D98FA8]"
+                >
+                  <option value="">Select event</option>
+                  <option value="Wedding">Wedding</option>
+                  <option value="Reception">Reception</option>
+                  <option value="Engagement">Engagement</option>
+                  <option value="Haldi">Haldi</option>
+                  <option value="Mehndi">Mehndi</option>
+                  <option value="Birthday">Birthday</option>
+                  <option value="Corporate Event">
+                    Corporate Event
+                  </option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
 
-        <select
-          name="eventType"
-          required
-          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] outline-none transition focus:border-[#D98FA8]"
-        >
-          <option value="">Select event</option>
-          <option value="Wedding">Wedding</option>
-          <option value="Reception">Reception</option>
-          <option value="Engagement">Engagement</option>
-          <option value="Haldi">Haldi</option>
-          <option value="Mehndi">Mehndi</option>
-          <option value="Birthday">Birthday</option>
-          <option value="Corporate Event">Corporate Event</option>
-          <option value="Other">Other</option>
-        </select>
-      </div>
+              <div>
+                <label className="mb-2 block text-sm text-[#E8CBD5]">
+                  Approx. Guests
+                </label>
 
-      {/* GUESTS */}
-      <div>
-        <label className="mb-2 block text-sm text-[#E8CBD5]">
-          Approx. Guests
-        </label>
+                <input
+                  name="guests"
+                  type="number"
+                  placeholder="Number of guests"
+                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+                />
+              </div>
 
-        <input
-          name="guests"
-          type="number"
-          placeholder="Number of guests"
-          className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
-        />
-      </div>
+              <div className="md:col-span-2">
+                <label className="mb-2 block text-sm text-[#E8CBD5]">
+                  Decoration Requirements
+                </label>
 
-      {/* REQUIREMENTS */}
-      <div className="md:col-span-2">
-        <label className="mb-2 block text-sm text-[#E8CBD5]">
-          Decoration Requirements
-        </label>
+                <textarea
+                  name="requirements"
+                  rows="5"
+                  placeholder="Tell us about your theme, colours, stage, flowers, lighting, budget, etc."
+                  className="w-full resize-none rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+                />
+              </div>
 
-        <textarea
-          name="requirements"
-          rows="5"
-          placeholder="Tell us about your theme, colours, stage, flowers, lighting, budget, etc."
-          className="w-full resize-none rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
-        />
-      </div>
-
-      {/* BUTTON */}
-      <div className="md:col-span-2">
-        <button
-          type="submit"
-          className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#D98FA8] px-6 py-4 font-semibold text-white shadow-lg shadow-[#D98FA8]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C97894]"
-        >
-          <Send size={19} />
-          Send Enquiry on WhatsApp
-        </button>
-      </div>
-    </form>
-  </div>
-
-  {/* FAQ */}
-  <div className="mx-auto mt-8 max-w-6xl">
-
-    <div className="mb-6 text-center">
-      <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9B56D]">
-        FAQ
-      </p>
-
-      <h3 className="mt-2 font-serif text-3xl text-[#F8E8EE]">
-        Frequently Asked Questions
-      </h3>
-    </div>
-
-    <div className="grid gap-5 md:grid-cols-2">
-      {[
-        {
-          question: "How early should I book decoration?",
-          answer:
-            "We recommend booking as early as possible, especially for popular wedding dates and weekends.",
-        },
-        {
-          question: "Can I customize the decoration theme?",
-          answer:
-            "Yes. We can customize colours, flowers, stage design, lighting and other decoration elements.",
-        },
-        {
-          question: "Do you provide floral decoration?",
-          answer:
-            "Yes. Floral decoration can be included according to your theme and requirements.",
-        },
-        {
-          question: "Do you work outside Pune?",
-          answer:
-            "Yes. We can take decoration projects outside Pune depending on the event and location.",
-        },
-      ].map((faq) => (
-        <div
-          key={faq.question}
-          className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6"
-        >
-          <h4 className="font-semibold text-[#F8E8EE]">
-            {faq.question}
-          </h4>
-
-          <p className="mt-3 text-sm leading-6 text-[#C9AAB7]">
-            {faq.answer}
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
-
-  {/* LOCATION */}
-  <div className="mx-auto mt-8 max-w-6xl overflow-hidden rounded-2xl border border-[#5A3547] bg-[#321D2A]">
-
-    <div className="grid md:grid-cols-2">
-
-      <div className="flex flex-col justify-center p-8 md:p-10">
-        <MapPin
-          size={25}
-          className="mb-4 text-[#D98FA8]"
-        />
-
-        <h3 className="font-serif text-3xl text-[#F8E8EE]">
-          Based in Pune
-        </h3>
-
-        <p className="mt-3 text-sm leading-7 text-[#C9AAB7]">
-          Serving Pune, Maharashtra and nearby locations for
-          weddings, receptions, engagements and special events.
-        </p>
-
-        <a
-          href="https://www.google.com/maps/search/?api=1&query=Pune%2C%20Maharashtra"
-          target="_blank"
-          rel="noreferrer"
-          className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl border border-[#6A4051] bg-[#24151F] px-5 py-3 text-sm font-semibold text-[#E8CBD5] transition hover:border-[#D98FA8] hover:text-[#F8E8EE]"
-        >
-          <MapPin size={17} />
-          Open Location
-        </a>
-      </div>
-
-      <div className="flex min-h-[280px] items-center justify-center bg-[#1B1017] p-8">
-        <div className="text-center">
-
-          <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#D98FA8]/15">
-            <MapPin
-              size={28}
-              className="text-[#D98FA8]"
-            />
+              <div className="md:col-span-2">
+                <button
+                  type="submit"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#D98FA8] px-6 py-4 font-semibold text-white shadow-lg shadow-[#D98FA8]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C97894]"
+                >
+                  <Send size={19} />
+                  Send Enquiry on WhatsApp
+                </button>
+              </div>
+            </form>
           </div>
 
-          <h4 className="text-xl font-semibold text-[#F8E8EE]">
-            Pune, Maharashtra
-          </h4>
+          <div className="mx-auto mt-8 max-w-6xl">
+            <div className="mb-6 text-center">
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9B56D]">
+                FAQ
+              </p>
 
-          <p className="mt-2 text-sm text-[#9F7D8B]">
-            Wedding & Event Decoration
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+              <h3 className="mt-2 font-serif text-3xl text-[#F8E8EE]">
+                Frequently Asked Questions
+              </h3>
+            </div>
 
-  {/* FINAL CTA */}
-  <div className="mx-auto mt-10 max-w-4xl text-center">
+            <div className="grid gap-5 md:grid-cols-2">
+              {[
+                {
+                  question: "How early should I book decoration?",
+                  answer:
+                    "We recommend booking as early as possible, especially for popular wedding dates and weekends.",
+                },
+                {
+                  question: "Can I customize the decoration theme?",
+                  answer:
+                    "Yes. We can customize colours, flowers, stage design, lighting and other decoration elements.",
+                },
+                {
+                  question: "Do you provide floral decoration?",
+                  answer:
+                    "Yes. Floral decoration can be included according to your theme and requirements.",
+                },
+                {
+                  question: "Do you work outside Pune?",
+                  answer:
+                    "Yes. We can take decoration projects outside Pune depending on the event and location.",
+                },
+              ].map((faq) => (
+                <div
+                  key={faq.question}
+                  className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6"
+                >
+                  <h4 className="font-semibold text-[#F8E8EE]">
+                    {faq.question}
+                  </h4>
 
-    <Heart
-      size={25}
-      className="mx-auto text-[#D98FA8]"
-      fill="currentColor"
-    />
+                  <p className="mt-3 text-sm leading-6 text-[#C9AAB7]">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
 
-    <h3 className="mt-4 font-serif text-3xl text-[#F8E8EE]">
-      Let's Make Your Venue Beautiful
-    </h3>
+          <div className="mx-auto mt-8 max-w-6xl overflow-hidden rounded-2xl border border-[#5A3547] bg-[#321D2A]">
+            <div className="grid md:grid-cols-2">
+              <div className="flex flex-col justify-center p-8 md:p-10">
+                <MapPin
+                  size={25}
+                  className="mb-4 text-[#D98FA8]"
+                />
 
-    <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#C9AAB7]">
-      From elegant stages to beautiful floral setups, we create
-      decoration that makes your celebration unforgettable.
-    </p>
+                <h3 className="font-serif text-3xl text-[#F8E8EE]">
+                  Based in Pune
+                </h3>
 
-    <a
-      href="https://wa.me/91XXXXXXXXXX"
-      target="_blank"
-      rel="noreferrer"
-      className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-7 py-3.5 font-semibold text-white transition hover:scale-105"
-    >
-      <MessageCircle size={19} />
-      Start Your Enquiry
-    </a>
-  </div>
-</section>
+                <p className="mt-3 text-sm leading-7 text-[#C9AAB7]">
+                  Serving Pune, Maharashtra and nearby locations for
+                  weddings, receptions, engagements and special events.
+                </p>
 
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Pune%2C%20Maharashtra"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl border border-[#6A4051] bg-[#24151F] px-5 py-3 text-sm font-semibold text-[#E8CBD5] transition hover:border-[#D98FA8] hover:text-[#F8E8EE]"
+                >
+                  <MapPin size={17} />
+                  Open Location
+                </a>
+              </div>
 
-        {/* =====================================================
-            FOOTER
-        ===================================================== */}
+              <div className="flex min-h-[280px] items-center justify-center bg-[#1B1017] p-8">
+                <div className="text-center">
+                  <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#D98FA8]/15">
+                    <MapPin
+                      size={28}
+                      className="text-[#D98FA8]"
+                    />
+                  </div>
+
+                  <h4 className="text-xl font-semibold text-[#F8E8EE]">
+                    Pune, Maharashtra
+                  </h4>
+
+                  <p className="mt-2 text-sm text-[#9F7D8B]">
+                    Wedding & Event Decoration
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mx-auto mt-10 max-w-4xl text-center">
+            <Heart
+              size={25}
+              className="mx-auto text-[#D98FA8]"
+              fill="currentColor"
+            />
+
+            <h3 className="mt-4 font-serif text-3xl text-[#F8E8EE]">
+              Let's Make Your Venue Beautiful
+            </h3>
+
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-6 text-[#C9AAB7]">
+              From elegant stages to beautiful floral setups, we create
+              decoration that makes your celebration unforgettable.
+            </p>
+
+            <a
+              href="https://wa.me/91XXXXXXXXXX"
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-7 py-3.5 font-semibold text-white transition hover:scale-105"
+            >
+              <MessageCircle size={19} />
+              Start Your Enquiry
+            </a>
+          </div>
+        </section>
 
         <footer
           className="
@@ -1961,7 +1849,6 @@ ${requirements}
               items-center
             "
           >
-
             <Heart
               size={22}
               className="text-[#e6bd85]"
@@ -1981,14 +1868,8 @@ ${requirements}
             <p className="text-xs text-white/40">
               © 2026 Wedding & Events. All rights reserved.
             </p>
-
           </div>
         </footer>
-
-
-        {/* =====================================================
-            LIGHTBOX
-        ===================================================== */}
 
         <ImageLightbox
           images={galleryImages}
@@ -1996,7 +1877,6 @@ ${requirements}
           setActiveIndex={setActiveImage}
           onClose={() => setActiveImage(null)}
         />
-
       </div>
     </>
   );

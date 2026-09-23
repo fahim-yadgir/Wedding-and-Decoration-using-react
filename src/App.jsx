@@ -30,7 +30,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="relative min-h-screen w-full overflow-x-hidden">
       <TopBar
         activeType={activeType}
         setActiveType={handleTypeChange}
@@ -41,7 +41,7 @@ function App() {
         setActiveMenu={handleMenuChange}
       />
 
-      <main className="ml-[76px] pt-16 min-h-screen">
+      <main className="min-h-screen w-full">
         {activeType === "wedding" ? (
           <Wedding setActiveMenu={setActiveMenu} />
         ) : (
@@ -53,4 +53,3 @@ function App() {
 }
 
 export default App;
-
