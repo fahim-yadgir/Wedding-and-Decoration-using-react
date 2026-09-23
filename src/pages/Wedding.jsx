@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import {
   ArrowRight,
   Check,
-  ChevronDown,
   Camera,
   Heart,
   Mail,
@@ -21,6 +20,300 @@ import ImageLightbox from "../components/ImageLightbox";
 function Wedding({ setActiveMenu }) {
   const [activeImage, setActiveImage] = useState(null);
 
+  /* =========================================================
+     ANIMATION STYLES
+  ========================================================= */
+
+  const animationStyles = `
+    /* ==================== CINEMATIC HERO ZOOM ==================== */
+
+    @keyframes cinematicZoom {
+      from {
+        transform: scale(1.05);
+      }
+
+      to {
+        transform: scale(1.14);
+      }
+    }
+
+
+    /* ==================== FADE UP ==================== */
+
+    @keyframes weddingFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    /* ==================== SLIDE LEFT ==================== */
+
+    @keyframes weddingSlideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-45px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+
+    /* ==================== SLIDE RIGHT ==================== */
+
+    @keyframes weddingSlideRight {
+      from {
+        opacity: 0;
+        transform: translateX(45px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+
+    /* ==================== FLOATING LIGHT ==================== */
+
+    @keyframes floatingLight {
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(45px, -30px) scale(1.12);
+      }
+    }
+
+
+    /* ==================== FLOATING LIGHT REVERSE ==================== */
+
+    @keyframes floatingLightReverse {
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(-40px, 35px) scale(1.12);
+      }
+    }
+
+
+    /* ==================== SCROLL INDICATOR ==================== */
+
+    @keyframes weddingScrollLine {
+      0%,
+      100% {
+        opacity: 0.35;
+        transform: scaleY(0.7);
+        transform-origin: top;
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+    }
+
+
+    /* ==================== GLOW ==================== */
+
+    @keyframes weddingGlow {
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.7;
+        transform: scale(1.08);
+      }
+    }
+
+
+    /* =========================================================
+       HERO ANIMATIONS
+    ========================================================= */
+
+    .wedding-cinematic-image {
+      animation: cinematicZoom 14s ease-in-out infinite alternate;
+    }
+
+    .wedding-floating-light {
+      animation: floatingLight 9s ease-in-out infinite;
+    }
+
+    .wedding-floating-light-reverse {
+      animation: floatingLightReverse 11s ease-in-out infinite;
+    }
+
+    .wedding-scroll-line {
+      animation: weddingScrollLine 1.8s ease-in-out infinite;
+    }
+
+
+    /* =========================================================
+       HERO TEXT ANIMATIONS
+    ========================================================= */
+
+    .wedding-fade-up {
+      animation: weddingFadeUp 0.9s ease-out both;
+    }
+
+    .wedding-slide-left {
+      animation: weddingSlideLeft 0.9s ease-out both;
+    }
+
+    .wedding-slide-right {
+      animation: weddingSlideRight 0.9s ease-out both;
+    }
+
+
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(45px);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+    }
+
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* =========================================================
+       SCROLL REVEAL LEFT
+    ========================================================= */
+
+    .animate-on-scroll-left {
+      opacity: 0;
+      transform: translateX(-55px);
+      transition:
+        opacity 1s ease,
+        transform 1s ease;
+    }
+
+    .animate-on-scroll-left.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+
+    /* =========================================================
+       SCROLL REVEAL RIGHT
+    ========================================================= */
+
+    .animate-on-scroll-right {
+      opacity: 0;
+      transform: translateX(55px);
+      transition:
+        opacity 1s ease,
+        transform 1s ease;
+    }
+
+    .animate-on-scroll-right.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+
+    /* =========================================================
+       SCALE REVEAL
+    ========================================================= */
+
+    .animate-scale {
+      opacity: 0;
+      transform: scale(0.92);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+    }
+
+    .animate-scale.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+
+    /* =========================================================
+       LUXURY CARD HOVER
+    ========================================================= */
+
+    .luxury-card {
+      transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease,
+        border-color 0.5s ease;
+    }
+
+    .luxury-card:hover {
+      transform: translateY(-8px);
+    }
+
+
+    /* =========================================================
+       LUXURY IMAGE HOVER
+    ========================================================= */
+
+    .luxury-image {
+      transition:
+        transform 0.8s ease,
+        filter 0.8s ease;
+    }
+
+    .luxury-image:hover {
+      transform: scale(1.04);
+    }
+
+
+    /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      .wedding-cinematic-image,
+      .wedding-floating-light,
+      .wedding-floating-light-reverse,
+      .wedding-scroll-line,
+      .wedding-fade-up,
+      .wedding-slide-left,
+      .wedding-slide-right,
+      .animate-on-scroll,
+      .animate-on-scroll-left,
+      .animate-on-scroll-right,
+      .animate-scale {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+  `;
+
+  /* =========================================================
+     GALLERY IMAGES
+  ========================================================= */
+
   const galleryImages = [
     "/images/wedding-1.webp",
     "/images/wedding-2.webp",
@@ -29,6 +322,10 @@ function Wedding({ setActiveMenu }) {
     "/images/wedding-5.webp",
     "/images/wedding-6.webp",
   ];
+
+  /* =========================================================
+     SERVICES
+  ========================================================= */
 
   const services = [
     {
@@ -62,6 +359,10 @@ function Wedding({ setActiveMenu }) {
       text: "Beautiful cinematic videos that preserve the fun and memorable moments of your birthday.",
     },
   ];
+
+  /* =========================================================
+     PACKAGES
+  ========================================================= */
 
   const packages = [
     {
@@ -100,6 +401,10 @@ function Wedding({ setActiveMenu }) {
     },
   ];
 
+  /* =========================================================
+     WHATSAPP HANDLER
+  ========================================================= */
+
   const handleWhatsApp = () => {
     const phoneNumber = "91XXXXXXXXXX";
 
@@ -111,6 +416,10 @@ function Wedding({ setActiveMenu }) {
       "_blank"
     );
   };
+
+  /* =========================================================
+     ACTIVE SECTION TRACKING
+  ========================================================= */
 
   useEffect(() => {
     const sectionIds = [
@@ -127,6 +436,7 @@ function Wedding({ setActiveMenu }) {
 
     const updateActiveSection = () => {
       const scrollPosition = window.scrollY + 150;
+
       let currentSection = "home";
 
       sectionIds.forEach((id) => {
@@ -143,12 +453,14 @@ function Wedding({ setActiveMenu }) {
       });
 
       setActiveMenu(currentSection);
+
       ticking = false;
     };
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(updateActiveSection);
+
         ticking = true;
       }
     };
@@ -167,67 +479,57 @@ function Wedding({ setActiveMenu }) {
     };
   }, [setActiveMenu]);
 
+  /* =========================================================
+     SCROLL ANIMATION OBSERVER
+  ========================================================= */
+
+  useEffect(() => {
+    const animatedElements = document.querySelectorAll(
+      ".animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right, .animate-scale"
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
+      }
+    );
+
+    animatedElements.forEach((element) => {
+      observer.observe(element);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  /* =========================================================
+     RETURN
+  ========================================================= */
+
   return (
     <>
-      <style>{`
-        @keyframes weddingFadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(28px);
-          }
+      {/* ==================== ANIMATION STYLES ==================== */}
 
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+      <style>{animationStyles}</style>
 
-        @keyframes weddingSlideLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-35px);
-          }
-
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes weddingSlideRight {
-          from {
-            opacity: 0;
-            transform: translateX(35px);
-          }
-
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        .wedding-fade-up {
-          animation: weddingFadeUp 0.8s ease-out both;
-        }
-
-        .wedding-slide-left {
-          animation: weddingSlideLeft 0.8s ease-out both;
-        }
-
-        .wedding-slide-right {
-          animation: weddingSlideRight 0.8s ease-out both;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .wedding-fade-up,
-          .wedding-slide-left,
-          .wedding-slide-right {
-            animation: none;
-          }
-        }
-      `}</style>
+      {/* ==================== MAIN WEDDING PAGE ==================== */}
 
       <div className="min-h-screen w-full overflow-x-hidden bg-[#f8f3ef] text-[#301925]">
+
+        {/* =====================================================
+            HERO SECTION
+        ===================================================== */}
 
         <section
           id="home"
@@ -240,46 +542,90 @@ function Wedding({ setActiveMenu }) {
             bg-[#24131f]
           "
         >
-          <img
-            src="/images/wedding-hero.webp"
-            alt="Beautiful wedding"
-            fetchPriority="high"
-            decoding="async"
-            className="
-              absolute
-              inset-0
-              h-full
-              w-full
-              object-cover
-              object-[35%_center]
-              sm:object-[35%_center]
-              md:object-[50%_20%]
-              lg:object-[55%_15%]
-              xl:object-[55%_15%]
-            "
-          />
+          <div className="absolute inset-0 overflow-hidden">
 
-          <div
-            className="
-              absolute
-              inset-0
-              bg-gradient-to-r
-              from-black/75
-              via-black/45
-              to-black/20
-            "
-          />
+            {/* Hero Image */}
 
-          <div
-            className="
-              absolute
-              inset-0
-              bg-gradient-to-t
-              from-[#170d15]/80
-              via-transparent
-              to-transparent
-            "
-          />
+            <img
+              src="/images/wedding-hero.webp"
+              alt="Beautiful wedding"
+              fetchPriority="high"
+              decoding="async"
+              className="
+                wedding-cinematic-image
+                absolute
+                inset-0
+                h-full
+                w-full
+                object-cover
+                object-[35%_center]
+                sm:object-[35%_center]
+                md:object-[50%_20%]
+                lg:object-[55%_15%]
+                xl:object-[55%_15%]
+              "
+            />
+
+            {/* Dark Overlay */}
+
+            <div
+              className="
+                absolute
+                inset-0
+                bg-gradient-to-r
+                from-black/75
+                via-black/45
+                to-black/20
+              "
+            />
+
+            {/* Bottom Gradient */}
+
+            <div
+              className="
+                absolute
+                inset-0
+                bg-gradient-to-t
+                from-[#170d15]/80
+                via-transparent
+                to-transparent
+              "
+            />
+
+            {/* Pink Cinematic Light */}
+
+            <div
+              className="
+                wedding-floating-light
+                absolute
+                -left-20
+                top-1/4
+                h-72
+                w-72
+                rounded-full
+                bg-[#d98fa8]/20
+                blur-[100px]
+              "
+            />
+
+            {/* Gold Cinematic Light */}
+
+            <div
+              className="
+                wedding-floating-light-reverse
+                absolute
+                -right-20
+                bottom-1/4
+                h-80
+                w-80
+                rounded-full
+                bg-[#f1d09b]/15
+                blur-[110px]
+              "
+            />
+          </div>
+
+          {/* Hero Content */}
 
           <div
             className="
@@ -298,7 +644,10 @@ function Wedding({ setActiveMenu }) {
               xl:px-24
             "
           >
-            <div className="max-w-xl wedding-fade-up">
+            <div className="max-w-xl">
+
+              {/* Hero Small Text */}
+
               <p
                 className="
                   mb-4
@@ -306,11 +655,15 @@ function Wedding({ setActiveMenu }) {
                   uppercase
                   tracking-[0.35em]
                   text-[#e6bd85]
+                  opacity-0
                   sm:text-xs
+                  animate-[weddingFadeUp_1s_ease-out_0.2s_forwards]
                 "
               >
                 Wedding Photography & Films
               </p>
+
+              {/* Hero Heading */}
 
               <h1
                 className="
@@ -318,19 +671,37 @@ function Wedding({ setActiveMenu }) {
                   text-4xl
                   leading-[1.05]
                   text-white
+                  opacity-0
                   sm:text-5xl
                   md:text-6xl
                   lg:text-7xl
+                  animate-[weddingFadeUp_1.2s_ease-out_0.45s_forwards]
                 "
               >
                 Your Story.
                 <br />
-                <span className="text-[#e6bd85]">Beautifully</span>
+
+                <span className="text-[#e6bd85]">
+                  Beautifully
+                </span>
+
                 <br />
+
                 Captured.
               </h1>
 
-              <div className="mt-5 flex items-center gap-3">
+              {/* Decorative Line */}
+
+              <div
+                className="
+                  mt-5
+                  flex
+                  items-center
+                  gap-3
+                  opacity-0
+                  animate-[weddingFadeUp_1s_ease-out_0.7s_forwards]
+                "
+              >
                 <div className="h-px w-12 bg-[#d4ad72]" />
 
                 <Heart
@@ -342,6 +713,8 @@ function Wedding({ setActiveMenu }) {
                 <div className="h-px w-12 bg-[#d4ad72]" />
               </div>
 
+              {/* Hero Description */}
+
               <p
                 className="
                   mt-5
@@ -349,14 +722,27 @@ function Wedding({ setActiveMenu }) {
                   text-sm
                   leading-7
                   text-gray-200
+                  opacity-0
                   sm:text-base
+                  animate-[weddingFadeUp_1.1s_ease-out_0.85s_forwards]
                 "
               >
                 We capture the emotions, celebrations and beautiful moments
                 that make your wedding unforgettable.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
+              {/* Hero Buttons */}
+
+              <div
+                className="
+                  mt-7
+                  flex
+                  flex-wrap
+                  gap-3
+                  opacity-0
+                  animate-[weddingFadeUp_1.1s_ease-out_1.05s_forwards]
+                "
+              >
                 <button
                   type="button"
                   onClick={handleWhatsApp}
@@ -374,16 +760,21 @@ function Wedding({ setActiveMenu }) {
                     text-[#2b1722]
                     shadow-xl
                     transition-all
-                    duration-300
+                    duration-500
                     hover:-translate-y-1
                     hover:bg-[#f0cc9b]
+                    hover:shadow-[0_15px_40px_rgba(230,189,133,0.25)]
                   "
                 >
                   Book Your Wedding
 
                   <ArrowRight
                     size={17}
-                    className="transition-transform group-hover:translate-x-1"
+                    className="
+                      transition-transform
+                      duration-300
+                      group-hover:translate-x-1
+                    "
                   />
                 </button>
 
@@ -406,7 +797,10 @@ function Wedding({ setActiveMenu }) {
                     py-3.5
                     text-sm
                     text-white
-                    transition
+                    transition-all
+                    duration-500
+                    hover:-translate-y-1
+                    hover:border-white/80
                     hover:bg-white/10
                   "
                 >
@@ -416,20 +810,41 @@ function Wedding({ setActiveMenu }) {
             </div>
           </div>
 
+          {/* Scroll Indicator */}
+
           <div
             className="
               absolute
-              bottom-5
+              bottom-7
               left-1/2
               z-20
               -translate-x-1/2
-              animate-bounce
-              text-white/70
+              opacity-0
+              animate-[weddingFadeUp_1s_ease-out_1.7s_forwards]
             "
           >
-            <ChevronDown size={20} />
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[8px] tracking-[0.35em] text-white/50">
+                SCROLL
+              </span>
+
+              <span
+                className="
+                  wedding-scroll-line
+                  h-10
+                  w-px
+                  bg-gradient-to-b
+                  from-[#f1d09b]
+                  to-transparent
+                "
+              />
+            </div>
           </div>
         </section>
+
+        {/* =====================================================
+            ABOUT SECTION
+        ===================================================== */}
 
         <section
           id="about"
@@ -448,9 +863,14 @@ function Wedding({ setActiveMenu }) {
           "
         >
           <div className="mx-auto w-full max-w-7xl">
+
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-              <div className="wedding-slide-left">
+
+              {/* About Image */}
+
+              <div className="animate-on-scroll-left">
                 <div className="relative">
+
                   <div
                     className="
                       absolute
@@ -470,6 +890,7 @@ function Wedding({ setActiveMenu }) {
                     loading="lazy"
                     decoding="async"
                     className="
+                      luxury-image
                       relative
                       h-[360px]
                       w-full
@@ -505,7 +926,10 @@ function Wedding({ setActiveMenu }) {
                 </div>
               </div>
 
-              <div className="wedding-slide-right">
+              {/* About Content */}
+
+              <div className="animate-on-scroll-right">
+
                 <p className="text-xs uppercase tracking-[0.3em] text-[#9d526e]">
                   About Us
                 </p>
@@ -522,7 +946,10 @@ function Wedding({ setActiveMenu }) {
                 >
                   Your Moments.
                   <br />
-                  <span className="text-[#9d526e]">Your Story.</span>
+
+                  <span className="text-[#9d526e]">
+                    Your Story.
+                  </span>
                 </h2>
 
                 <div className="my-6 flex items-center gap-3">
@@ -550,7 +977,8 @@ function Wedding({ setActiveMenu }) {
                 </p>
 
                 <div className="mt-7 grid grid-cols-2 gap-4">
-                  <div className="rounded-xl border border-[#dfd2ca] bg-white/60 p-4">
+
+                  <div className="luxury-card rounded-xl border border-[#dfd2ca] bg-white/60 p-4">
                     <p className="font-serif text-2xl text-[#9d526e]">
                       100+
                     </p>
@@ -560,7 +988,7 @@ function Wedding({ setActiveMenu }) {
                     </p>
                   </div>
 
-                  <div className="rounded-xl border border-[#dfd2ca] bg-white/60 p-4">
+                  <div className="luxury-card rounded-xl border border-[#dfd2ca] bg-white/60 p-4">
                     <p className="font-serif text-2xl text-[#9d526e]">
                       5+
                     </p>
@@ -569,6 +997,7 @@ function Wedding({ setActiveMenu }) {
                       Years Experience
                     </p>
                   </div>
+
                 </div>
 
                 <button
@@ -586,8 +1015,10 @@ function Wedding({ setActiveMenu }) {
                     text-sm
                     text-white
                     transition-all
+                    duration-500
                     hover:-translate-y-1
                     hover:bg-[#a45673]
+                    hover:shadow-lg
                   "
                 >
                   Know More
@@ -597,6 +1028,10 @@ function Wedding({ setActiveMenu }) {
             </div>
           </div>
         </section>
+
+        {/* =====================================================
+            GALLERY SECTION
+        ===================================================== */}
 
         <section
           id="gallery"
@@ -612,7 +1047,11 @@ function Wedding({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-            <div className="text-center wedding-fade-up">
+
+            {/* Gallery Heading */}
+
+            <div className="text-center animate-on-scroll">
+
               <p className="text-xs uppercase tracking-[0.3em] text-[#9d526e]">
                 Our Work
               </p>
@@ -639,13 +1078,20 @@ function Wedding({ setActiveMenu }) {
               </p>
             </div>
 
+            {/* Gallery Images */}
+
             <div className="mt-10 columns-2 gap-3 sm:columns-3 lg:gap-5">
+
               {galleryImages.map((image, index) => (
                 <button
                   key={image}
                   type="button"
                   onClick={() => setActiveImage(index)}
+                  style={{
+                    transitionDelay: `${index * 100}ms`,
+                  }}
                   className="
+                    animate-on-scroll
                     group
                     mb-3
                     block
@@ -673,9 +1119,14 @@ function Wedding({ setActiveMenu }) {
                   />
                 </button>
               ))}
+
             </div>
           </div>
         </section>
+
+        {/* =====================================================
+            SERVICES SECTION
+        ===================================================== */}
 
         <section
           id="services"
@@ -691,7 +1142,11 @@ function Wedding({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-            <div className="text-center">
+
+            {/* Services Heading */}
+
+            <div className="text-center animate-on-scroll">
+
               <p className="text-xs uppercase tracking-[0.3em] text-[#9d526e]">
                 What We Offer
               </p>
@@ -718,14 +1173,22 @@ function Wedding({ setActiveMenu }) {
               </p>
             </div>
 
+            {/* Service Cards */}
+
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {services.map((service) => {
+
+              {services.map((service, index) => {
                 const Icon = service.icon;
 
                 return (
                   <div
                     key={service.title}
+                    style={{
+                      transitionDelay: `${index * 120}ms`,
+                    }}
                     className="
+                      animate-on-scroll
+                      luxury-card
                       group
                       rounded-2xl
                       border
@@ -734,10 +1197,8 @@ function Wedding({ setActiveMenu }) {
                       p-6
                       text-center
                       shadow-sm
-                      transition-all
-                      duration-500
-                      hover:-translate-y-2
-                      hover:shadow-xl
+                      hover:border-[#c9a66b]/50
+                      hover:shadow-[0_20px_50px_rgba(48,25,37,0.12)]
                     "
                   >
                     <div
@@ -750,14 +1211,21 @@ function Wedding({ setActiveMenu }) {
                         justify-center
                         rounded-full
                         bg-[#f5e5e9]
-                        transition
+                        transition-all
+                        duration-500
+                        group-hover:scale-110
                         group-hover:bg-[#8f4662]
                       "
                     >
                       <Icon
                         size={23}
                         strokeWidth={1.6}
-                        className="text-[#9d526e] transition group-hover:text-white"
+                        className="
+                          text-[#9d526e]
+                          transition-colors
+                          duration-500
+                          group-hover:text-white
+                        "
                       />
                     </div>
 
@@ -780,7 +1248,8 @@ function Wedding({ setActiveMenu }) {
                         text-xs
                         font-medium
                         text-[#9d526e]
-                        transition
+                        transition-all
+                        duration-300
                         hover:text-[#8f4662]
                       "
                     >
@@ -788,15 +1257,24 @@ function Wedding({ setActiveMenu }) {
 
                       <ArrowRight
                         size={14}
-                        className="transition-transform group-hover:translate-x-1"
+                        className="
+                          transition-transform
+                          duration-300
+                          group-hover:translate-x-1
+                        "
                       />
                     </button>
                   </div>
                 );
               })}
+
             </div>
           </div>
         </section>
+
+        {/* =====================================================
+            PACKAGES SECTION
+        ===================================================== */}
 
         <section
           id="packages"
@@ -813,7 +1291,11 @@ function Wedding({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-            <div className="text-center">
+
+            {/* Packages Heading */}
+
+            <div className="text-center animate-on-scroll">
+
               <p className="text-xs uppercase tracking-[0.3em] text-[#e6bd85]">
                 Packages
               </p>
@@ -840,27 +1322,33 @@ function Wedding({ setActiveMenu }) {
               </p>
             </div>
 
+            {/* Package Cards */}
+
             <div className="mt-10 grid gap-5 lg:grid-cols-3">
-              {packages.map((pkg) => (
+
+              {packages.map((pkg, index) => (
                 <div
                   key={pkg.name}
+                  style={{
+                    transitionDelay: `${index * 150}ms`,
+                  }}
                   className={`
+                    animate-on-scroll
+                    luxury-card
                     relative
                     flex
                     flex-col
                     rounded-2xl
                     border
                     p-7
-                    transition-all
-                    duration-500
-                    hover:-translate-y-2
                     ${
                       pkg.popular
-                        ? "border-[#d6a86e] bg-[#3a202d] shadow-[0_15px_50px_rgba(0,0,0,0.3)]"
+                        ? "border-[#d6a86e] bg-[#3a202d] shadow-[0_15px_50px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_60px_rgba(214,168,110,0.12)]"
                         : "border-white/10 bg-[#321c28]"
                     }
                   `}
                 >
+
                   {pkg.popular && (
                     <div
                       className="
@@ -883,7 +1371,9 @@ function Wedding({ setActiveMenu }) {
                     </div>
                   )}
 
-                  <h3 className="font-serif text-2xl">{pkg.name}</h3>
+                  <h3 className="font-serif text-2xl">
+                    {pkg.name}
+                  </h3>
 
                   <p className="mt-4 font-serif text-4xl text-[#e6bd85]">
                     {pkg.price}
@@ -892,6 +1382,7 @@ function Wedding({ setActiveMenu }) {
                   <div className="my-6 h-px bg-white/10" />
 
                   <div className="flex-1 space-y-4">
+
                     {pkg.features.map((feature) => (
                       <div
                         key={feature}
@@ -915,12 +1406,16 @@ function Wedding({ setActiveMenu }) {
                             bg-[#e6bd85]/15
                           "
                         >
-                          <Check size={12} className="text-[#e6bd85]" />
+                          <Check
+                            size={12}
+                            className="text-[#e6bd85]"
+                          />
                         </span>
 
                         {feature}
                       </div>
                     ))}
+
                   </div>
 
                   <button
@@ -937,18 +1432,26 @@ function Wedding({ setActiveMenu }) {
                       bg-[#a65370]
                       py-3.5
                       text-sm
-                      transition
+                      transition-all
+                      duration-300
+                      hover:-translate-y-0.5
                       hover:bg-[#bd6684]
                     "
                   >
                     Enquire on WhatsApp
                     <ArrowRight size={15} />
                   </button>
+
                 </div>
               ))}
+
             </div>
           </div>
         </section>
+
+        {/* =====================================================
+            VIDEOS SECTION
+        ===================================================== */}
 
         <section
           id="videos"
@@ -964,7 +1467,11 @@ function Wedding({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-            <div className="text-center">
+
+            {/* Video Heading */}
+
+            <div className="text-center animate-on-scroll">
+
               <p className="text-xs uppercase tracking-[0.3em] text-[#9d526e]">
                 Our Videos
               </p>
@@ -984,11 +1491,18 @@ function Wedding({ setActiveMenu }) {
 
                 <div className="h-px w-12 bg-[#c9a66b]" />
               </div>
+
             </div>
 
+            {/* Videos */}
+
             <div className="mt-10 grid gap-6 md:grid-cols-2">
+
+              {/* Video 1 */}
+
               <div
                 className="
+                  animate-on-scroll-left
                   group
                   overflow-hidden
                   rounded-2xl
@@ -996,28 +1510,38 @@ function Wedding({ setActiveMenu }) {
                   border-[#dfd2ca]
                   bg-white
                   shadow-sm
-                  transition
+                  transition-all
                   duration-500
                   hover:-translate-y-2
                   hover:shadow-xl
                 "
               >
                 <div className="relative overflow-hidden">
+
                   <video
                     controls
                     preload="none"
                     playsInline
                     poster="/images/video-poster.webp"
-                    className="aspect-video w-full object-cover"
+                    className="
+                      aspect-video
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-[1.02]
+                    "
                   >
                     <source
                       src="/videos/wedding-1.mp4"
                       type="video/mp4"
                     />
                   </video>
+
                 </div>
 
                 <div className="p-5">
+
                   <p className="text-[10px] uppercase tracking-[0.2em] text-[#9d526e]">
                     Wedding Film
                   </p>
@@ -1025,11 +1549,15 @@ function Wedding({ setActiveMenu }) {
                   <h3 className="mt-2 font-serif text-xl text-[#301925]">
                     Wedding Highlights
                   </h3>
+
                 </div>
               </div>
 
+              {/* Video 2 */}
+
               <div
                 className="
+                  animate-on-scroll-right
                   group
                   overflow-hidden
                   rounded-2xl
@@ -1037,28 +1565,38 @@ function Wedding({ setActiveMenu }) {
                   border-[#dfd2ca]
                   bg-white
                   shadow-sm
-                  transition
+                  transition-all
                   duration-500
                   hover:-translate-y-2
                   hover:shadow-xl
                 "
               >
                 <div className="relative overflow-hidden">
+
                   <video
                     controls
                     preload="none"
                     playsInline
                     poster="/images/video-poster.webp"
-                    className="aspect-video w-full object-cover"
+                    className="
+                      aspect-video
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-[1.02]
+                    "
                   >
                     <source
                       src="/videos/wedding-2.mp4"
                       type="video/mp4"
                     />
                   </video>
+
                 </div>
 
                 <div className="p-5">
+
                   <p className="text-[10px] uppercase tracking-[0.2em] text-[#9d526e]">
                     Wedding Film
                   </p>
@@ -1066,17 +1604,34 @@ function Wedding({ setActiveMenu }) {
                   <h3 className="mt-2 font-serif text-xl text-[#301925]">
                     Beautiful Memories
                   </h3>
+
                 </div>
               </div>
+
             </div>
           </div>
         </section>
 
+        {/* =====================================================
+            CONTACT SECTION
+        ===================================================== */}
+
         <section
           id="contact"
-          className="min-h-screen bg-[#24151F] px-5 py-20 text-[#F8E8EE]"
+          className="
+            scroll-section
+            min-h-screen
+            bg-[#24151F]
+            px-5
+            py-20
+            text-[#F8E8EE]
+          "
         >
-          <div className="mx-auto max-w-6xl text-center">
+
+          {/* Contact Heading */}
+
+          <div className="mx-auto max-w-6xl text-center animate-on-scroll">
+
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#D9B56D]">
               Contact Us
             </p>
@@ -1090,15 +1645,52 @@ function Wedding({ setActiveMenu }) {
               create a beautiful experience that you and your family will
               remember forever.
             </p>
+
           </div>
 
+          {/* Contact Cards */}
+
           <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+            {/* Phone */}
+
             <a
               href="tel:+919XXXXXXXXX"
-              className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D98FA8] hover:bg-[#3A2230]"
+              className="
+                animate-on-scroll
+                group
+                rounded-2xl
+                border
+                border-[#5A3547]
+                bg-[#321D2A]
+                p-6
+                transition-all
+                duration-500
+                hover:-translate-y-2
+                hover:border-[#D98FA8]
+                hover:bg-[#3A2230]
+                hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)]
+              "
             >
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98FA8]/15">
-                <Phone size={22} className="text-[#D98FA8]" />
+              <div
+                className="
+                  mb-5
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-[#D98FA8]/15
+                  transition-transform
+                  duration-500
+                  group-hover:scale-110
+                "
+              >
+                <Phone
+                  size={22}
+                  className="text-[#D98FA8]"
+                />
               </div>
 
               <h3 className="text-lg font-semibold text-[#F8E8EE]">
@@ -1114,14 +1706,47 @@ function Wedding({ setActiveMenu }) {
               </p>
             </a>
 
+            {/* WhatsApp */}
+
             <a
               href="https://wa.me/91XXXXXXXXXX"
               target="_blank"
               rel="noreferrer"
-              className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#3A2230]"
+              className="
+                animate-on-scroll
+                group
+                rounded-2xl
+                border
+                border-[#5A3547]
+                bg-[#321D2A]
+                p-6
+                transition-all
+                duration-500
+                hover:-translate-y-2
+                hover:border-[#25D366]
+                hover:bg-[#3A2230]
+                hover:shadow-[0_20px_50px_rgba(37,211,102,0.12)]
+              "
             >
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#25D366]/15">
-                <MessageCircle size={22} className="text-[#25D366]" />
+              <div
+                className="
+                  mb-5
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-[#25D366]/15
+                  transition-transform
+                  duration-500
+                  group-hover:scale-110
+                "
+              >
+                <MessageCircle
+                  size={22}
+                  className="text-[#25D366]"
+                />
               </div>
 
               <h3 className="text-lg font-semibold text-[#F8E8EE]">
@@ -1137,12 +1762,44 @@ function Wedding({ setActiveMenu }) {
               </p>
             </a>
 
+            {/* Email */}
+
             <a
               href="mailto:hello@yourwedding.com"
-              className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D9B56D] hover:bg-[#3A2230]"
+              className="
+                animate-on-scroll
+                group
+                rounded-2xl
+                border
+                border-[#5A3547]
+                bg-[#321D2A]
+                p-6
+                transition-all
+                duration-500
+                hover:-translate-y-2
+                hover:border-[#D9B56D]
+                hover:bg-[#3A2230]
+              "
             >
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D9B56D]/15">
-                <Mail size={22} className="text-[#D9B56D]" />
+              <div
+                className="
+                  mb-5
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-[#D9B56D]/15
+                  transition-transform
+                  duration-500
+                  group-hover:scale-110
+                "
+              >
+                <Mail
+                  size={22}
+                  className="text-[#D9B56D]"
+                />
               </div>
 
               <h3 className="text-lg font-semibold text-[#F8E8EE]">
@@ -1158,9 +1815,43 @@ function Wedding({ setActiveMenu }) {
               </p>
             </a>
 
-            <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D98FA8] hover:bg-[#3A2230]">
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98FA8]/15">
-                <MapPin size={22} className="text-[#D98FA8]" />
+            {/* Location */}
+
+            <div
+              className="
+                animate-on-scroll
+                group
+                rounded-2xl
+                border
+                border-[#5A3547]
+                bg-[#321D2A]
+                p-6
+                transition-all
+                duration-500
+                hover:-translate-y-2
+                hover:border-[#D98FA8]
+                hover:bg-[#3A2230]
+              "
+            >
+              <div
+                className="
+                  mb-5
+                  flex
+                  h-12
+                  w-12
+                  items-center
+                  justify-center
+                  rounded-xl
+                  bg-[#D98FA8]/15
+                  transition-transform
+                  duration-500
+                  group-hover:scale-110
+                "
+              >
+                <MapPin
+                  size={22}
+                  className="text-[#D98FA8]"
+                />
               </div>
 
               <h3 className="text-lg font-semibold text-[#F8E8EE]">
@@ -1175,16 +1866,50 @@ function Wedding({ setActiveMenu }) {
                 Available for destination weddings
               </p>
             </div>
+
           </div>
 
-          <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-[#6A4051] bg-gradient-to-r from-[#321D2A] to-[#3A2230] p-6">
+          {/* Quick Response */}
+
+          <div
+            className="
+              animate-on-scroll
+              mx-auto
+              mt-8
+              max-w-6xl
+              rounded-2xl
+              border
+              border-[#6A4051]
+              bg-gradient-to-r
+              from-[#321D2A]
+              to-[#3A2230]
+              p-6
+            "
+          >
             <div className="flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
+
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#D9B56D]/15">
-                  <Clock size={22} className="text-[#D9B56D]" />
+
+                <div
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    shrink-0
+                    items-center
+                    justify-center
+                    rounded-full
+                    bg-[#D9B56D]/15
+                  "
+                >
+                  <Clock
+                    size={22}
+                    className="text-[#D9B56D]"
+                  />
                 </div>
 
                 <div>
+
                   <h3 className="font-semibold text-[#F8E8EE]">
                     Quick Response
                   </h3>
@@ -1193,6 +1918,7 @@ function Wedding({ setActiveMenu }) {
                     We usually respond to enquiries within a few hours. For
                     urgent bookings, WhatsApp us directly.
                   </p>
+
                 </div>
               </div>
 
@@ -1200,22 +1926,72 @@ function Wedding({ setActiveMenu }) {
                 href="https://wa.me/91XXXXXXXXXX"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition hover:scale-105"
+                className="
+                  inline-flex
+                  shrink-0
+                  items-center
+                  gap-2
+                  rounded-xl
+                  bg-[#25D366]
+                  px-5
+                  py-3
+                  text-sm
+                  font-semibold
+                  text-white
+                  transition-all
+                  duration-300
+                  hover:scale-105
+                  hover:shadow-lg
+                  hover:shadow-[#25D366]/20
+                "
               >
                 <MessageCircle size={18} />
                 WhatsApp Us
               </a>
+
             </div>
           </div>
 
+          {/* Services & Booking Process */}
+
           <div className="mx-auto mt-8 grid max-w-6xl gap-6 lg:grid-cols-2">
-            <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
+
+            {/* Services */}
+
+            <div
+              className="
+                animate-on-scroll-left
+                rounded-2xl
+                border
+                border-[#5A3547]
+                bg-[#321D2A]
+                p-7
+                transition-all
+                duration-500
+              "
+            >
+
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D98FA8]/15">
-                  <Sparkles size={20} className="text-[#D98FA8]" />
+
+                <div
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-[#D98FA8]/15
+                  "
+                >
+                  <Sparkles
+                    size={20}
+                    className="text-[#D98FA8]"
+                  />
                 </div>
 
                 <div>
+
                   <h3 className="text-xl font-semibold text-[#F8E8EE]">
                     Our Wedding Services
                   </h3>
@@ -1223,10 +1999,13 @@ function Wedding({ setActiveMenu }) {
                   <p className="text-sm text-[#9F7D8B]">
                     Complete wedding coverage
                   </p>
+
                 </div>
+
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
+
                 {[
                   "Wedding Photography",
                   "Cinematic Videography",
@@ -1239,25 +2018,72 @@ function Wedding({ setActiveMenu }) {
                 ].map((service) => (
                   <div
                     key={service}
-                    className="flex items-center gap-3 rounded-xl border border-[#4E3040] bg-[#24151F] px-4 py-3"
+                    className="
+                      flex
+                      items-center
+                      gap-3
+                      rounded-xl
+                      border
+                      border-[#4E3040]
+                      bg-[#24151F]
+                      px-4
+                      py-3
+                      transition-all
+                      duration-300
+                      hover:-translate-y-0.5
+                      hover:border-[#6A4051]
+                    "
                   >
-                    <Check size={17} className="shrink-0 text-[#D9B56D]" />
+                    <Check
+                      size={17}
+                      className="shrink-0 text-[#D9B56D]"
+                    />
 
                     <span className="text-sm text-[#E8CBD5]">
                       {service}
                     </span>
                   </div>
                 ))}
+
               </div>
             </div>
 
-            <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
+            {/* Booking Process */}
+
+            <div
+              className="
+                animate-on-scroll-right
+                rounded-2xl
+                border
+                border-[#5A3547]
+                bg-[#321D2A]
+                p-7
+                transition-all
+                duration-500
+              "
+            >
+
               <div className="mb-6 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D9B56D]/15">
-                  <CalendarDays size={20} className="text-[#D9B56D]" />
+
+                <div
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-[#D9B56D]/15
+                  "
+                >
+                  <CalendarDays
+                    size={20}
+                    className="text-[#D9B56D]"
+                  />
                 </div>
 
                 <div>
+
                   <h3 className="text-xl font-semibold text-[#F8E8EE]">
                     Booking Process
                   </h3>
@@ -1265,10 +2091,13 @@ function Wedding({ setActiveMenu }) {
                   <p className="text-sm text-[#9F7D8B]">
                     Simple & stress-free
                   </p>
+
                 </div>
+
               </div>
 
               <div className="space-y-5">
+
                 {[
                   {
                     number: "01",
@@ -1286,12 +2115,30 @@ function Wedding({ setActiveMenu }) {
                     text: "Choose your package and secure your wedding date.",
                   },
                 ].map((step) => (
-                  <div key={step.number} className="flex gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#D98FA8] text-sm font-bold text-white">
+                  <div
+                    key={step.number}
+                    className="flex gap-4"
+                  >
+                    <div
+                      className="
+                        flex
+                        h-10
+                        w-10
+                        shrink-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        bg-[#D98FA8]
+                        text-sm
+                        font-bold
+                        text-white
+                      "
+                    >
                       {step.number}
                     </div>
 
                     <div>
+
                       <h4 className="font-semibold text-[#F8E8EE]">
                         {step.title}
                       </h4>
@@ -1299,15 +2146,35 @@ function Wedding({ setActiveMenu }) {
                       <p className="mt-1 text-sm leading-6 text-[#C9AAB7]">
                         {step.text}
                       </p>
+
                     </div>
                   </div>
                 ))}
+
               </div>
             </div>
+
           </div>
 
-          <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7 md:p-9">
+          {/* Wedding Enquiry Form */}
+
+          <div
+            className="
+              animate-on-scroll
+              mx-auto
+              mt-8
+              max-w-6xl
+              rounded-2xl
+              border
+              border-[#5A3547]
+              bg-[#321D2A]
+              p-7
+              md:p-9
+            "
+          >
+
             <div className="mb-8">
+
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9B56D]">
                 Wedding Enquiry
               </p>
@@ -1320,6 +2187,7 @@ function Wedding({ setActiveMenu }) {
                 Fill in the details below and send your enquiry directly
                 through WhatsApp.
               </p>
+
             </div>
 
             <form
@@ -1361,6 +2229,9 @@ ${requirements}
               }}
               className="grid gap-5 md:grid-cols-2"
             >
+
+              {/* Name */}
+
               <div>
                 <label className="mb-2 block text-sm text-[#E8CBD5]">
                   Your Name
@@ -1371,9 +2242,24 @@ ${requirements}
                   type="text"
                   required
                   placeholder="Enter your name"
-                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-[#5A3547]
+                    bg-[#1B1017]
+                    px-4
+                    py-3
+                    text-[#F8E8EE]
+                    placeholder:text-[#8F6D7A]
+                    outline-none
+                    transition
+                    focus:border-[#D98FA8]
+                  "
                 />
               </div>
+
+              {/* Phone */}
 
               <div>
                 <label className="mb-2 block text-sm text-[#E8CBD5]">
@@ -1393,9 +2279,24 @@ ${requirements}
                       .replace(/[^0-9]/g, "")
                       .slice(0, 10);
                   }}
-                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-[#5A3547]
+                    bg-[#1B1017]
+                    px-4
+                    py-3
+                    text-[#F8E8EE]
+                    placeholder:text-[#8F6D7A]
+                    outline-none
+                    transition
+                    focus:border-[#D98FA8]
+                  "
                 />
               </div>
+
+              {/* Date */}
 
               <div>
                 <label className="mb-2 block text-sm text-[#E8CBD5]">
@@ -1406,9 +2307,23 @@ ${requirements}
                   name="date"
                   type="date"
                   required
-                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] outline-none transition focus:border-[#D98FA8]"
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-[#5A3547]
+                    bg-[#1B1017]
+                    px-4
+                    py-3
+                    text-[#F8E8EE]
+                    outline-none
+                    transition
+                    focus:border-[#D98FA8]
+                  "
                 />
               </div>
+
+              {/* Venue */}
 
               <div>
                 <label className="mb-2 block text-sm text-[#E8CBD5]">
@@ -1419,9 +2334,24 @@ ${requirements}
                   name="venue"
                   type="text"
                   placeholder="Wedding venue"
-                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-[#5A3547]
+                    bg-[#1B1017]
+                    px-4
+                    py-3
+                    text-[#F8E8EE]
+                    placeholder:text-[#8F6D7A]
+                    outline-none
+                    transition
+                    focus:border-[#D98FA8]
+                  "
                 />
               </div>
+
+              {/* Service */}
 
               <div>
                 <label className="mb-2 block text-sm text-[#E8CBD5]">
@@ -1431,26 +2361,47 @@ ${requirements}
                 <select
                   name="service"
                   required
-                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] outline-none transition focus:border-[#D98FA8]"
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-[#5A3547]
+                    bg-[#1B1017]
+                    px-4
+                    py-3
+                    text-[#F8E8EE]
+                    outline-none
+                    transition
+                    focus:border-[#D98FA8]
+                  "
                 >
-                  <option value="">Select service</option>
+                  <option value="">
+                    Select service
+                  </option>
+
                   <option value="Wedding Photography">
                     Wedding Photography
                   </option>
+
                   <option value="Wedding Videography">
                     Wedding Videography
                   </option>
+
                   <option value="Photography + Videography">
                     Photography + Videography
                   </option>
+
                   <option value="Pre-Wedding Shoot">
                     Pre-Wedding Shoot
                   </option>
+
                   <option value="Complete Wedding Coverage">
                     Complete Wedding Coverage
                   </option>
                 </select>
               </div>
+
+              {/* Guests */}
 
               <div>
                 <label className="mb-2 block text-sm text-[#E8CBD5]">
@@ -1461,11 +2412,27 @@ ${requirements}
                   name="guests"
                   type="number"
                   placeholder="Number of guests"
-                  className="w-full rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+                  className="
+                    w-full
+                    rounded-xl
+                    border
+                    border-[#5A3547]
+                    bg-[#1B1017]
+                    px-4
+                    py-3
+                    text-[#F8E8EE]
+                    placeholder:text-[#8F6D7A]
+                    outline-none
+                    transition
+                    focus:border-[#D98FA8]
+                  "
                 />
               </div>
 
+              {/* Requirements */}
+
               <div className="md:col-span-2">
+
                 <label className="mb-2 block text-sm text-[#E8CBD5]">
                   Tell Us More
                 </label>
@@ -1474,24 +2441,69 @@ ${requirements}
                   name="requirements"
                   rows="5"
                   placeholder="Tell us about your wedding, preferred style, events, budget, etc."
-                  className="w-full resize-none rounded-xl border border-[#5A3547] bg-[#1B1017] px-4 py-3 text-[#F8E8EE] placeholder:text-[#8F6D7A] outline-none transition focus:border-[#D98FA8]"
+                  className="
+                    w-full
+                    resize-none
+                    rounded-xl
+                    border
+                    border-[#5A3547]
+                    bg-[#1B1017]
+                    px-4
+                    py-3
+                    text-[#F8E8EE]
+                    placeholder:text-[#8F6D7A]
+                    outline-none
+                    transition
+                    focus:border-[#D98FA8]
+                  "
                 />
+
               </div>
 
+              {/* Submit */}
+
               <div className="md:col-span-2">
+
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#D98FA8] px-6 py-4 font-semibold text-white shadow-lg shadow-[#D98FA8]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C97894]"
+                  className="
+                    inline-flex
+                    w-full
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    bg-[#D98FA8]
+                    px-6
+                    py-4
+                    font-semibold
+                    text-white
+                    shadow-lg
+                    shadow-[#D98FA8]/10
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:bg-[#C97894]
+                    hover:shadow-[#D98FA8]/20
+                  "
                 >
                   <Send size={19} />
                   Send Enquiry on WhatsApp
                 </button>
+
               </div>
+
             </form>
           </div>
 
+          {/* =====================================================
+              FAQ SECTION
+          ===================================================== */}
+
           <div className="mx-auto mt-8 max-w-6xl">
-            <div className="mb-6 text-center">
+
+            <div className="mb-6 text-center animate-on-scroll">
+
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9B56D]">
                 FAQ
               </p>
@@ -1499,9 +2511,11 @@ ${requirements}
               <h3 className="mt-2 font-serif text-3xl text-[#F8E8EE]">
                 Frequently Asked Questions
               </h3>
+
             </div>
 
             <div className="grid gap-5 md:grid-cols-2">
+
               {[
                 {
                   question: "How early should I book?",
@@ -1523,10 +2537,24 @@ ${requirements}
                   answer:
                     "Send us your wedding date through WhatsApp and we will check availability for you.",
                 },
-              ].map((faq) => (
+              ].map((faq, index) => (
                 <div
                   key={faq.question}
-                  className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6"
+                  style={{
+                    transitionDelay: `${index * 120}ms`,
+                  }}
+                  className="
+                    animate-on-scroll
+                    rounded-2xl
+                    border
+                    border-[#5A3547]
+                    bg-[#321D2A]
+                    p-6
+                    transition-all
+                    duration-500
+                    hover:-translate-y-1
+                    hover:border-[#D98FA8]/50
+                  "
                 >
                   <h4 className="font-semibold text-[#F8E8EE]">
                     {faq.question}
@@ -1537,13 +2565,36 @@ ${requirements}
                   </p>
                 </div>
               ))}
+
             </div>
           </div>
 
-          <div className="mx-auto mt-8 max-w-6xl overflow-hidden rounded-2xl border border-[#5A3547] bg-[#321D2A]">
+          {/* =====================================================
+              LOCATION SECTION
+          ===================================================== */}
+
+          <div
+            className="
+              animate-on-scroll
+              mx-auto
+              mt-8
+              max-w-6xl
+              overflow-hidden
+              rounded-2xl
+              border
+              border-[#5A3547]
+              bg-[#321D2A]
+            "
+          >
+
             <div className="grid md:grid-cols-2">
+
               <div className="flex flex-col justify-center p-8 md:p-10">
-                <MapPin size={25} className="mb-4 text-[#D98FA8]" />
+
+                <MapPin
+                  size={25}
+                  className="mb-4 text-[#D98FA8]"
+                />
 
                 <h3 className="font-serif text-3xl text-[#F8E8EE]">
                   Based in Pune
@@ -1558,17 +2609,64 @@ ${requirements}
                   href="https://www.google.com/maps/search/?api=1&query=Pune%2C%20Maharashtra"
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl border border-[#6A4051] bg-[#24151F] px-5 py-3 text-sm font-semibold text-[#E8CBD5] transition hover:border-[#D98FA8] hover:text-[#F8E8EE]"
+                  className="
+                    mt-6
+                    inline-flex
+                    w-fit
+                    items-center
+                    gap-2
+                    rounded-xl
+                    border
+                    border-[#6A4051]
+                    bg-[#24151F]
+                    px-5
+                    py-3
+                    text-sm
+                    font-semibold
+                    text-[#E8CBD5]
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:border-[#D98FA8]
+                    hover:text-[#F8E8EE]
+                  "
                 >
                   <MapPin size={17} />
                   Open Location
                 </a>
+
               </div>
 
-              <div className="flex min-h-[280px] items-center justify-center bg-[#1B1017] p-8">
+              <div
+                className="
+                  flex
+                  min-h-[280px]
+                  items-center
+                  justify-center
+                  bg-[#1B1017]
+                  p-8
+                "
+              >
+
                 <div className="text-center">
-                  <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#D98FA8]/15">
-                    <MapPin size={28} className="text-[#D98FA8]" />
+
+                  <div
+                    className="
+                      mx-auto
+                      mb-5
+                      flex
+                      h-16
+                      w-16
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-[#D98FA8]/15
+                    "
+                  >
+                    <MapPin
+                      size={28}
+                      className="text-[#D98FA8]"
+                    />
                   </div>
 
                   <h4 className="text-xl font-semibold text-[#F8E8EE]">
@@ -1578,12 +2676,20 @@ ${requirements}
                   <p className="mt-2 text-sm text-[#9F7D8B]">
                     Wedding Photography & Events
                   </p>
+
                 </div>
+
               </div>
+
             </div>
           </div>
 
-          <div className="mx-auto mt-10 max-w-4xl text-center">
+          {/* =====================================================
+              FINAL CTA
+          ===================================================== */}
+
+          <div className="mx-auto mt-10 max-w-4xl text-center animate-on-scroll">
+
             <Heart
               size={25}
               className="mx-auto text-[#D98FA8]"
@@ -1603,16 +2709,47 @@ ${requirements}
               href="https://wa.me/91XXXXXXXXXX"
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-7 py-3.5 font-semibold text-white transition hover:scale-105"
+              className="
+                mt-6
+                inline-flex
+                items-center
+                gap-2
+                rounded-xl
+                bg-[#25D366]
+                px-7
+                py-3.5
+                font-semibold
+                text-white
+                transition-all
+                duration-300
+                hover:scale-105
+                hover:shadow-lg
+                hover:shadow-[#25D366]/20
+              "
             >
               <MessageCircle size={19} />
               Start Your Enquiry
             </a>
+
           </div>
+
         </section>
 
-        <footer className="bg-[#24131f] px-5 py-10 text-center text-white">
+        {/* =====================================================
+            FOOTER
+        ===================================================== */}
+
+        <footer
+          className="
+            bg-[#24131f]
+            px-5
+            py-10
+            text-center
+            text-white
+          "
+        >
           <div className="mx-auto flex max-w-7xl flex-col items-center">
+
             <Heart
               size={22}
               className="text-[#e6bd85]"
@@ -1632,8 +2769,13 @@ ${requirements}
             <p className="text-xs text-white/40">
               © 2026 Wedding & Events. All rights reserved.
             </p>
+
           </div>
         </footer>
+
+        {/* =====================================================
+            IMAGE LIGHTBOX
+        ===================================================== */}
 
         <ImageLightbox
           images={galleryImages}
@@ -1641,6 +2783,7 @@ ${requirements}
           setActiveIndex={setActiveImage}
           onClose={() => setActiveImage(null)}
         />
+
       </div>
     </>
   );
