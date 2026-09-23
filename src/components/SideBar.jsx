@@ -52,10 +52,12 @@ function SideBar({ activeMenu, setActiveMenu }) {
 
   return (
     <>
+      {/* ==================== MENU BUTTON ==================== */}
       {!isOpen && (
         <button
           type="button"
           onClick={() => setIsOpen(true)}
+          aria-label="Open navigation menu"
           className="
             fixed
             left-5
@@ -68,21 +70,22 @@ function SideBar({ activeMenu, setActiveMenu }) {
             justify-center
             rounded-2xl
             border
-            border-white/30
-            bg-white/15
+            border-white/25
+            bg-black/20
             text-white
             shadow-[0_10px_35px_rgba(0,0,0,0.3)]
             backdrop-blur-xl
             transition-all
             duration-300
             hover:scale-105
-            hover:bg-white/25
+            hover:bg-black/30
           "
         >
-          <Menu size={21} />
+          <Menu size={21} strokeWidth={1.8} />
         </button>
       )}
 
+      {/* ==================== BACKDROP ==================== */}
       {isOpen && (
         <div
           onClick={() => setIsOpen(false)}
@@ -96,6 +99,7 @@ function SideBar({ activeMenu, setActiveMenu }) {
         />
       )}
 
+      {/* ==================== SIDEBAR ==================== */}
       <aside
         className={`
           fixed
@@ -120,9 +124,11 @@ function SideBar({ activeMenu, setActiveMenu }) {
           }
         `}
       >
+        {/* Close Button */}
         <button
           type="button"
           onClick={() => setIsOpen(false)}
+          aria-label="Close navigation menu"
           className="
             absolute
             right-2
@@ -136,19 +142,20 @@ function SideBar({ activeMenu, setActiveMenu }) {
             rounded-xl
             border
             border-white/20
-            bg-white/15
+            bg-white/10
             text-white
             shadow-[0_8px_25px_rgba(0,0,0,0.3)]
             backdrop-blur-xl
             transition-all
             duration-300
             hover:scale-105
-            hover:bg-white/25
+            hover:bg-white/20
           "
         >
-          <X size={20} />
+          <X size={20} strokeWidth={1.8} />
         </button>
 
+        {/* Sidebar Glow */}
         <div
           className="
             pointer-events-none
@@ -164,6 +171,7 @@ function SideBar({ activeMenu, setActiveMenu }) {
           "
         />
 
+        {/* Navigation */}
         <nav
           className="
             relative
@@ -230,42 +238,47 @@ function SideBar({ activeMenu, setActiveMenu }) {
         </nav>
       </aside>
 
+      {/* ==================== WHATSAPP FLOATING BUTTON ==================== */}
       <div
         className="
           fixed
-          bottom-4
-          left-4
-          z-[95]
-          flex
-          w-[78px]
-          justify-center
+          bottom-5
+          left-5
+          z-[100]
         "
       >
         <button
           type="button"
           onClick={handleWhatsApp}
+          aria-label="Contact us on WhatsApp"
           className="
+            group
+            relative
             flex
-            w-[70px]
-            flex-col
+            h-14
+            w-14
             items-center
-            gap-1
-            rounded-[18px]
-            border
-            border-white/15
+            justify-center
+            rounded-full
             bg-[#25D366]
-            py-3
             text-white
-            shadow-[0_12px_35px_rgba(37,211,102,0.35)]
+            shadow-[0_8px_25px_rgba(37,211,102,0.35)]
             transition-all
             duration-300
-            hover:scale-105
-            hover:bg-[#20bd5b]
+            hover:scale-110
+            hover:shadow-[0_12px_30px_rgba(37,211,102,0.45)]
           "
         >
+          {/* WhatsApp Icon */}
           <svg
             viewBox="0 0 32 32"
-            className="h-[22px] w-[22px]"
+            className="
+              h-7
+              w-7
+              transition-transform
+              duration-300
+              group-hover:scale-110
+            "
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -283,8 +296,29 @@ function SideBar({ activeMenu, setActiveMenu }) {
             />
           </svg>
 
-          <span className="text-[8px] font-medium">
-            WhatsApp
+          {/* Hover Label */}
+          <span
+            className="
+              pointer-events-none
+              absolute
+              left-[68px]
+              whitespace-nowrap
+              rounded-lg
+              bg-[#301925]
+              px-3
+              py-2
+              text-xs
+              font-medium
+              text-white
+              opacity-0
+              shadow-lg
+              transition-all
+              duration-300
+              group-hover:translate-x-1
+              group-hover:opacity-100
+            "
+          >
+            Chat on WhatsApp
           </span>
         </button>
       </div>
