@@ -103,6 +103,10 @@ function Decoration({ setActiveMenu }) {
     );
   };
 
+  /* =========================================================
+     ACTIVE SIDEBAR SECTION
+  ========================================================= */
+
   useEffect(() => {
     const sectionIds = [
       "home",
@@ -159,67 +163,299 @@ function Decoration({ setActiveMenu }) {
     };
   }, [setActiveMenu]);
 
+  /* =========================================================
+     SCROLL REVEAL ANIMATION
+  ========================================================= */
+
+  useEffect(() => {
+    const animatedElements = document.querySelectorAll(
+      ".animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right, .animate-scale"
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -60px 0px",
+      }
+    );
+
+    animatedElements.forEach((element) => {
+      observer.observe(element);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  /* =========================================================
+     ANIMATION STYLES
+  ========================================================= */
+
+  const animationStyles = `
+    @keyframes decorationCinematicZoom {
+      from {
+        transform: scale(1.05);
+      }
+
+      to {
+        transform: scale(1.14);
+      }
+    }
+
+    @keyframes decorationFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes decorationSlideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-45px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes decorationSlideRight {
+      from {
+        opacity: 0;
+        transform: translateX(45px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes decorationFloatingLight {
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(45px, -30px) scale(1.12);
+      }
+    }
+
+    @keyframes decorationFloatingLightReverse {
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(-40px, 35px) scale(1.12);
+      }
+    }
+
+    @keyframes decorationScrollLine {
+      0%,
+      100% {
+        opacity: 0.35;
+        transform: scaleY(0.7);
+        transform-origin: top;
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+    }
+
+    @keyframes decorationGlow {
+      0%,
+      100% {
+        opacity: 0.25;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.65;
+        transform: scale(1.08);
+      }
+    }
+
+    .decoration-cinematic-image {
+      animation:
+        decorationCinematicZoom
+        14s
+        ease-in-out
+        infinite
+        alternate;
+    }
+
+    .decoration-floating-light {
+      animation:
+        decorationFloatingLight
+        9s
+        ease-in-out
+        infinite;
+    }
+
+    .decoration-floating-light-reverse {
+      animation:
+        decorationFloatingLightReverse
+        11s
+        ease-in-out
+        infinite;
+    }
+
+    .decoration-scroll-line {
+      animation:
+        decorationScrollLine
+        1.8s
+        ease-in-out
+        infinite;
+    }
+
+    .decoration-fade-up {
+      animation:
+        decorationFadeUp
+        0.9s
+        ease-out
+        both;
+    }
+
+    .decoration-slide-left {
+      animation:
+        decorationSlideLeft
+        0.9s
+        ease-out
+        both;
+    }
+
+    .decoration-slide-right {
+      animation:
+        decorationSlideRight
+        0.9s
+        ease-out
+        both;
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(45px);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+    }
+
+    .animate-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .animate-on-scroll-left {
+      opacity: 0;
+      transform: translateX(-55px);
+      transition:
+        opacity 1s ease,
+        transform 1s ease;
+    }
+
+    .animate-on-scroll-left.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .animate-on-scroll-right {
+      opacity: 0;
+      transform: translateX(55px);
+      transition:
+        opacity 1s ease,
+        transform 1s ease;
+    }
+
+    .animate-on-scroll-right.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .animate-scale {
+      opacity: 0;
+      transform: scale(0.92);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+    }
+
+    .animate-scale.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .decoration-luxury-card {
+      transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease,
+        border-color 0.5s ease;
+    }
+
+    .decoration-luxury-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .decoration-luxury-image {
+      transition:
+        transform 0.8s ease,
+        filter 0.8s ease;
+    }
+
+    .decoration-luxury-image:hover {
+      transform: scale(1.04);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .decoration-cinematic-image,
+      .decoration-floating-light,
+      .decoration-floating-light-reverse,
+      .decoration-scroll-line,
+      .decoration-fade-up,
+      .decoration-slide-left,
+      .decoration-slide-right,
+      .animate-on-scroll,
+      .animate-on-scroll-left,
+      .animate-on-scroll-right,
+      .animate-scale {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+  `;
+
   return (
     <>
-      <style>{`
-        @keyframes decorationFadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(28px);
-          }
-
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes decorationSlideLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-35px);
-          }
-
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes decorationSlideRight {
-          from {
-            opacity: 0;
-            transform: translateX(35px);
-          }
-
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        .animate-fade-up {
-          animation: decorationFadeUp 0.8s ease-out both;
-        }
-
-        .animate-slide-left {
-          animation: decorationSlideLeft 0.8s ease-out both;
-        }
-
-        .animate-slide-right {
-          animation: decorationSlideRight 0.8s ease-out both;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .animate-fade-up,
-          .animate-slide-left,
-          .animate-slide-right {
-            animation: none;
-          }
-        }
-      `}</style>
+      <style>{animationStyles}</style>
 
       <div className="min-h-screen w-full overflow-x-hidden bg-[#f8f3ef] text-[#301925]">
+
+        {/* =====================================================
+            HERO
+        ===================================================== */}
 
         <section
           id="home"
@@ -239,6 +475,7 @@ function Decoration({ setActiveMenu }) {
             fetchPriority="high"
             decoding="async"
             className="
+              decoration-cinematic-image
               absolute
               inset-0
               h-full
@@ -274,6 +511,38 @@ function Decoration({ setActiveMenu }) {
             "
           />
 
+          {/* Floating decorative light */}
+
+          <div
+            className="
+              decoration-floating-light
+              pointer-events-none
+              absolute
+              -right-20
+              top-20
+              h-64
+              w-64
+              rounded-full
+              bg-[#e6bd85]/10
+              blur-3xl
+            "
+          />
+
+          <div
+            className="
+              decoration-floating-light-reverse
+              pointer-events-none
+              absolute
+              bottom-20
+              left-10
+              h-72
+              w-72
+              rounded-full
+              bg-[#9d526e]/10
+              blur-3xl
+            "
+          />
+
           <div
             className="
               relative
@@ -291,7 +560,7 @@ function Decoration({ setActiveMenu }) {
             "
           >
             <div className="mx-auto w-full max-w-7xl">
-              <div className="max-w-2xl animate-fade-up">
+              <div className="max-w-2xl decoration-fade-up">
                 <p
                   className="
                     mb-5
@@ -417,8 +686,8 @@ function Decoration({ setActiveMenu }) {
                       transition-all
                       duration-300
                       hover:-translate-y-1
-                      hover:bg-white/15
                       hover:border-white/50
+                      hover:bg-white/15
                     "
                   >
                     View Gallery
@@ -445,11 +714,15 @@ function Decoration({ setActiveMenu }) {
 
               <ChevronDown
                 size={18}
-                className="animate-bounce"
+                className="decoration-scroll-line"
               />
             </div>
           </div>
         </section>
+
+        {/* =====================================================
+            ABOUT
+        ===================================================== */}
 
         <section
           id="about"
@@ -478,7 +751,7 @@ function Decoration({ setActiveMenu }) {
                 lg:gap-16
               "
             >
-              <div className="animate-slide-left">
+              <div className="animate-on-scroll-left">
                 <div className="relative">
                   <div
                     className="
@@ -499,6 +772,7 @@ function Decoration({ setActiveMenu }) {
                     loading="lazy"
                     decoding="async"
                     className="
+                      decoration-luxury-image
                       relative
                       h-[360px]
                       w-full
@@ -534,7 +808,7 @@ function Decoration({ setActiveMenu }) {
                 </div>
               </div>
 
-              <div className="animate-slide-right">
+              <div className="animate-on-scroll-right">
                 <p
                   className="
                     text-xs
@@ -669,6 +943,10 @@ function Decoration({ setActiveMenu }) {
           </div>
         </section>
 
+        {/* =====================================================
+            GALLERY
+        ===================================================== */}
+
         <section
           id="gallery"
           className="
@@ -684,7 +962,7 @@ function Decoration({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-            <div className="text-center animate-fade-up">
+            <div className="text-center animate-on-scroll">
               <p
                 className="
                   text-xs
@@ -748,7 +1026,11 @@ function Decoration({ setActiveMenu }) {
                   key={image}
                   type="button"
                   onClick={() => setActiveImage(index)}
+                  style={{
+                    transitionDelay: `${index * 100}ms`,
+                  }}
                   className="
+                    animate-on-scroll
                     group
                     mb-3
                     block
@@ -765,13 +1047,11 @@ function Decoration({ setActiveMenu }) {
                     loading="lazy"
                     decoding="async"
                     className="
+                      decoration-luxury-image
                       block
                       h-auto
                       w-full
                       object-cover
-                      transition-transform
-                      duration-700
-                      group-hover:scale-105
                     "
                   />
                 </button>
@@ -779,6 +1059,10 @@ function Decoration({ setActiveMenu }) {
             </div>
           </div>
         </section>
+
+        {/* =====================================================
+            SERVICES
+        ===================================================== */}
 
         <section
           id="services"
@@ -795,7 +1079,7 @@ function Decoration({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-            <div className="text-center">
+            <div className="text-center animate-on-scroll">
               <p
                 className="
                   text-xs
@@ -847,7 +1131,12 @@ function Decoration({ setActiveMenu }) {
                 return (
                   <div
                     key={service.title}
+                    style={{
+                      transitionDelay: `${index * 120}ms`,
+                    }}
                     className="
+                      animate-on-scroll
+                      decoration-luxury-card
                       group
                       rounded-2xl
                       border
@@ -856,14 +1145,7 @@ function Decoration({ setActiveMenu }) {
                       p-6
                       text-center
                       shadow-sm
-                      transition-all
-                      duration-500
-                      hover:-translate-y-2
-                      hover:shadow-xl
                     "
-                    style={{
-                      animationDelay: `${index * 100}ms`,
-                    }}
                   >
                     <div
                       className="
@@ -876,6 +1158,8 @@ function Decoration({ setActiveMenu }) {
                         rounded-full
                         bg-[#f5e5e9]
                         transition
+                        duration-500
+                        group-hover:scale-110
                         group-hover:bg-[#8f4662]
                       "
                     >
@@ -885,6 +1169,8 @@ function Decoration({ setActiveMenu }) {
                         className="
                           text-[#9d526e]
                           transition
+                          duration-500
+                          group-hover:rotate-6
                           group-hover:text-white
                         "
                       />
@@ -916,6 +1202,8 @@ function Decoration({ setActiveMenu }) {
                         text-xs
                         font-medium
                         text-[#9d526e]
+                        transition
+                        hover:gap-3
                       "
                     >
                       Enquire Now
@@ -927,6 +1215,10 @@ function Decoration({ setActiveMenu }) {
             </div>
           </div>
         </section>
+
+        {/* =====================================================
+            PACKAGES
+        ===================================================== */}
 
         <section
           id="packages"
@@ -944,7 +1236,7 @@ function Decoration({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-            <div className="text-center">
+            <div className="text-center animate-on-scroll">
               <p
                 className="
                   text-xs
@@ -987,19 +1279,21 @@ function Decoration({ setActiveMenu }) {
             </div>
 
             <div className="mt-10 grid gap-5 lg:grid-cols-3">
-              {packages.map((pkg) => (
+              {packages.map((pkg, index) => (
                 <div
                   key={pkg.name}
+                  style={{
+                    transitionDelay: `${index * 150}ms`,
+                  }}
                   className={`
+                    animate-on-scroll
+                    decoration-luxury-card
                     relative
                     flex
                     flex-col
                     rounded-2xl
                     border
                     p-7
-                    transition-all
-                    duration-500
-                    hover:-translate-y-2
                     ${
                       pkg.popular
                         ? "border-[#d6a86e] bg-[#3a202d] shadow-[0_15px_50px_rgba(0,0,0,0.3)]"
@@ -1096,6 +1390,8 @@ function Decoration({ setActiveMenu }) {
                       py-3.5
                       text-sm
                       transition
+                      duration-300
+                      hover:scale-[1.02]
                       hover:bg-[#bd6684]
                     "
                   >
@@ -1107,6 +1403,10 @@ function Decoration({ setActiveMenu }) {
             </div>
           </div>
         </section>
+
+        {/* =====================================================
+            VIDEOS
+        ===================================================== */}
 
         <section
           id="videos"
@@ -1123,7 +1423,7 @@ function Decoration({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-            <div className="text-center">
+            <div className="text-center animate-on-scroll">
               <p
                 className="
                   text-xs
@@ -1163,6 +1463,8 @@ function Decoration({ setActiveMenu }) {
             <div className="mt-10 grid gap-6 md:grid-cols-2">
               <div
                 className="
+                  animate-on-scroll-left
+                  decoration-luxury-card
                   group
                   overflow-hidden
                   rounded-2xl
@@ -1170,10 +1472,6 @@ function Decoration({ setActiveMenu }) {
                   border-[#dfd2ca]
                   bg-white
                   shadow-sm
-                  transition
-                  duration-500
-                  hover:-translate-y-2
-                  hover:shadow-xl
                 "
               >
                 <div className="relative overflow-hidden">
@@ -1182,7 +1480,14 @@ function Decoration({ setActiveMenu }) {
                     preload="none"
                     playsInline
                     poster="/images/video-poster.webp"
-                    className="aspect-video w-full object-cover"
+                    className="
+                      aspect-video
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-105
+                    "
                   >
                     <source
                       src="/videos/decoration-1.mp4"
@@ -1218,6 +1523,8 @@ function Decoration({ setActiveMenu }) {
 
               <div
                 className="
+                  animate-on-scroll-right
+                  decoration-luxury-card
                   group
                   overflow-hidden
                   rounded-2xl
@@ -1225,10 +1532,6 @@ function Decoration({ setActiveMenu }) {
                   border-[#dfd2ca]
                   bg-white
                   shadow-sm
-                  transition
-                  duration-500
-                  hover:-translate-y-2
-                  hover:shadow-xl
                 "
               >
                 <div className="relative overflow-hidden">
@@ -1237,7 +1540,14 @@ function Decoration({ setActiveMenu }) {
                     preload="none"
                     playsInline
                     poster="/images/video-poster.webp"
-                    className="aspect-video w-full object-cover"
+                    className="
+                      aspect-video
+                      w-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-105
+                    "
                   >
                     <source
                       src="/videos/decoration-2.mp4"
@@ -1274,6 +1584,10 @@ function Decoration({ setActiveMenu }) {
           </div>
         </section>
 
+        {/* =====================================================
+            CONTACT
+        ===================================================== */}
+
         <section
           id="contact"
           className="
@@ -1286,7 +1600,7 @@ function Decoration({ setActiveMenu }) {
             text-[#F8E8EE]
           "
         >
-          <div className="mx-auto max-w-6xl text-center">
+          <div className="mx-auto max-w-6xl text-center animate-on-scroll">
             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-[#D9B56D]">
               Contact Us
             </p>
@@ -1305,7 +1619,17 @@ function Decoration({ setActiveMenu }) {
           <div className="mx-auto mt-14 grid max-w-6xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
             <a
               href="tel:+919XXXXXXXXX"
-              className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D98FA8] hover:bg-[#3A2230]"
+              className="
+                animate-on-scroll
+                decoration-luxury-card
+                group
+                rounded-2xl
+                border
+                border-[#5A3547]
+                bg-[#321D2A]
+                p-6
+              "
+              style={{ transitionDelay: "100ms" }}
             >
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98FA8]/15">
                 <Phone size={22} className="text-[#D98FA8]" />
@@ -1328,7 +1652,17 @@ function Decoration({ setActiveMenu }) {
               href="https://wa.me/91XXXXXXXXXX"
               target="_blank"
               rel="noreferrer"
-              className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#25D366] hover:bg-[#3A2230]"
+              className="
+                animate-on-scroll
+                decoration-luxury-card
+                group
+                rounded-2xl
+                border
+                border-[#5A3547]
+                bg-[#321D2A]
+                p-6
+              "
+              style={{ transitionDelay: "200ms" }}
             >
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#25D366]/15">
                 <MessageCircle size={22} className="text-[#25D366]" />
@@ -1349,7 +1683,17 @@ function Decoration({ setActiveMenu }) {
 
             <a
               href="mailto:hello@yourdecoration.com"
-              className="group rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D9B56D] hover:bg-[#3A2230]"
+              className="
+                animate-on-scroll
+                decoration-luxury-card
+                group
+                rounded-2xl
+                border
+                border-[#5A3547]
+                bg-[#321D2A]
+                p-6
+              "
+              style={{ transitionDelay: "300ms" }}
             >
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D9B56D]/15">
                 <Mail size={22} className="text-[#D9B56D]" />
@@ -1368,7 +1712,18 @@ function Decoration({ setActiveMenu }) {
               </p>
             </a>
 
-            <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#D98FA8] hover:bg-[#3A2230]">
+            <div
+              className="
+                animate-on-scroll
+                decoration-luxury-card
+                rounded-2xl
+                border
+                border-[#5A3547]
+                bg-[#321D2A]
+                p-6
+              "
+              style={{ transitionDelay: "400ms" }}
+            >
               <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-[#D98FA8]/15">
                 <MapPin size={22} className="text-[#D98FA8]" />
               </div>
@@ -1387,7 +1742,21 @@ function Decoration({ setActiveMenu }) {
             </div>
           </div>
 
-          <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-[#6A4051] bg-gradient-to-r from-[#321D2A] to-[#3A2230] p-6">
+          <div
+            className="
+              animate-on-scroll
+              mx-auto
+              mt-8
+              max-w-6xl
+              rounded-2xl
+              border
+              border-[#6A4051]
+              bg-gradient-to-r
+              from-[#321D2A]
+              to-[#3A2230]
+              p-6
+            "
+          >
             <div className="flex flex-col items-start gap-5 md:flex-row md:items-center md:justify-between">
               <div className="flex items-start gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#D9B56D]/15">
@@ -1410,7 +1779,21 @@ function Decoration({ setActiveMenu }) {
                 href="https://wa.me/91XXXXXXXXXX"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-[#25D366] px-5 py-3 text-sm font-semibold text-white transition hover:scale-105"
+                className="
+                  inline-flex
+                  shrink-0
+                  items-center
+                  gap-2
+                  rounded-xl
+                  bg-[#25D366]
+                  px-5
+                  py-3
+                  text-sm
+                  font-semibold
+                  text-white
+                  transition
+                  hover:scale-105
+                "
               >
                 <MessageCircle size={18} />
                 WhatsApp Us
@@ -1419,7 +1802,7 @@ function Decoration({ setActiveMenu }) {
           </div>
 
           <div className="mx-auto mt-8 grid max-w-6xl gap-6 lg:grid-cols-2">
-            <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
+            <div className="animate-on-scroll-left rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
               <div className="mb-6 flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D98FA8]/15">
                   <Sparkles size={20} className="text-[#D98FA8]" />
@@ -1449,7 +1832,21 @@ function Decoration({ setActiveMenu }) {
                 ].map((service) => (
                   <div
                     key={service}
-                    className="flex items-center gap-3 rounded-xl border border-[#4E3040] bg-[#24151F] px-4 py-3"
+                    className="
+                      flex
+                      items-center
+                      gap-3
+                      rounded-xl
+                      border
+                      border-[#4E3040]
+                      bg-[#24151F]
+                      px-4
+                      py-3
+                      transition
+                      duration-300
+                      hover:-translate-y-1
+                      hover:border-[#D98FA8]/50
+                    "
                   >
                     <Check
                       size={17}
@@ -1464,7 +1861,7 @@ function Decoration({ setActiveMenu }) {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
+            <div className="animate-on-scroll-right rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7">
               <div className="mb-6 flex items-center gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#D9B56D]/15">
                   <CalendarDays
@@ -1525,7 +1922,7 @@ function Decoration({ setActiveMenu }) {
             </div>
           </div>
 
-          <div className="mx-auto mt-8 max-w-6xl rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7 md:p-9">
+          <div className="animate-scale mx-auto mt-8 max-w-6xl rounded-2xl border border-[#5A3547] bg-[#321D2A] p-7 md:p-9">
             <div className="mb-8">
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9B56D]">
                 Decoration Enquiry
@@ -1695,7 +2092,25 @@ ${requirements}
               <div className="md:col-span-2">
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#D98FA8] px-6 py-4 font-semibold text-white shadow-lg shadow-[#D98FA8]/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#C97894]"
+                  className="
+                    inline-flex
+                    w-full
+                    items-center
+                    justify-center
+                    gap-2
+                    rounded-xl
+                    bg-[#D98FA8]
+                    px-6
+                    py-4
+                    font-semibold
+                    text-white
+                    shadow-lg
+                    shadow-[#D98FA8]/10
+                    transition-all
+                    duration-300
+                    hover:-translate-y-0.5
+                    hover:bg-[#C97894]
+                  "
                 >
                   <Send size={19} />
                   Send Enquiry on WhatsApp
@@ -1704,8 +2119,12 @@ ${requirements}
             </form>
           </div>
 
+          {/* =====================================================
+              FAQ
+          ===================================================== */}
+
           <div className="mx-auto mt-8 max-w-6xl">
-            <div className="mb-6 text-center">
+            <div className="mb-6 text-center animate-on-scroll">
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#D9B56D]">
                 FAQ
               </p>
@@ -1737,10 +2156,21 @@ ${requirements}
                   answer:
                     "Yes. We can take decoration projects outside Pune depending on the event and location.",
                 },
-              ].map((faq) => (
+              ].map((faq, index) => (
                 <div
                   key={faq.question}
-                  className="rounded-2xl border border-[#5A3547] bg-[#321D2A] p-6"
+                  style={{
+                    transitionDelay: `${index * 120}ms`,
+                  }}
+                  className="
+                    animate-on-scroll
+                    decoration-luxury-card
+                    rounded-2xl
+                    border
+                    border-[#5A3547]
+                    bg-[#321D2A]
+                    p-6
+                  "
                 >
                   <h4 className="font-semibold text-[#F8E8EE]">
                     {faq.question}
@@ -1754,7 +2184,11 @@ ${requirements}
             </div>
           </div>
 
-          <div className="mx-auto mt-8 max-w-6xl overflow-hidden rounded-2xl border border-[#5A3547] bg-[#321D2A]">
+          {/* =====================================================
+              LOCATION
+          ===================================================== */}
+
+          <div className="animate-on-scroll mx-auto mt-8 max-w-6xl overflow-hidden rounded-2xl border border-[#5A3547] bg-[#321D2A]">
             <div className="grid md:grid-cols-2">
               <div className="flex flex-col justify-center p-8 md:p-10">
                 <MapPin
@@ -1775,7 +2209,25 @@ ${requirements}
                   href="https://www.google.com/maps/search/?api=1&query=Pune%2C%20Maharashtra"
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl border border-[#6A4051] bg-[#24151F] px-5 py-3 text-sm font-semibold text-[#E8CBD5] transition hover:border-[#D98FA8] hover:text-[#F8E8EE]"
+                  className="
+                    mt-6
+                    inline-flex
+                    w-fit
+                    items-center
+                    gap-2
+                    rounded-xl
+                    border
+                    border-[#6A4051]
+                    bg-[#24151F]
+                    px-5
+                    py-3
+                    text-sm
+                    font-semibold
+                    text-[#E8CBD5]
+                    transition
+                    hover:border-[#D98FA8]
+                    hover:text-[#F8E8EE]
+                  "
                 >
                   <MapPin size={17} />
                   Open Location
@@ -1803,7 +2255,11 @@ ${requirements}
             </div>
           </div>
 
-          <div className="mx-auto mt-10 max-w-4xl text-center">
+          {/* =====================================================
+              FINAL CTA
+          ===================================================== */}
+
+          <div className="animate-scale mx-auto mt-10 max-w-4xl text-center">
             <Heart
               size={25}
               className="mx-auto text-[#D98FA8]"
@@ -1823,13 +2279,31 @@ ${requirements}
               href="https://wa.me/91XXXXXXXXXX"
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#25D366] px-7 py-3.5 font-semibold text-white transition hover:scale-105"
+              className="
+                mt-6
+                inline-flex
+                items-center
+                gap-2
+                rounded-xl
+                bg-[#25D366]
+                px-7
+                py-3.5
+                font-semibold
+                text-white
+                transition
+                duration-300
+                hover:scale-105
+              "
             >
               <MessageCircle size={19} />
               Start Your Enquiry
             </a>
           </div>
         </section>
+
+        {/* =====================================================
+            FOOTER
+        ===================================================== */}
 
         <footer
           className="
@@ -1870,6 +2344,10 @@ ${requirements}
             </p>
           </div>
         </footer>
+
+        {/* =====================================================
+            IMAGE LIGHTBOX
+        ===================================================== */}
 
         <ImageLightbox
           images={galleryImages}
