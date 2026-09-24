@@ -9,6 +9,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { useState } from "react";
 
 function SideBar({ activeMenu, setActiveMenu }) {
@@ -52,7 +53,7 @@ function SideBar({ activeMenu, setActiveMenu }) {
 
   return (
     <>
-      {/* ==================== MENU BUTTON ==================== */}
+      {/* ==================== HAMBURGER BUTTON ==================== */}
       {!isOpen && (
         <button
           type="button"
@@ -70,18 +71,22 @@ function SideBar({ activeMenu, setActiveMenu }) {
             justify-center
             rounded-2xl
             border
-            border-white/25
-            bg-black/20
+            border-white/20
+            bg-[#301925]
             text-white
-            shadow-[0_10px_35px_rgba(0,0,0,0.3)]
-            backdrop-blur-xl
+            shadow-[0_10px_35px_rgba(0,0,0,0.35)]
             transition-all
             duration-300
             hover:scale-105
-            hover:bg-black/30
+            hover:bg-[#3d2130]
+            hover:shadow-[0_12px_35px_rgba(48,25,37,0.5)]
           "
         >
-          <Menu size={21} strokeWidth={1.8} />
+          <Menu
+            size={22}
+            strokeWidth={1.8}
+            className="text-white"
+          />
         </button>
       )}
 
@@ -93,7 +98,7 @@ function SideBar({ activeMenu, setActiveMenu }) {
             fixed
             inset-0
             z-[80]
-            bg-black/20
+            bg-black/30
             backdrop-blur-[3px]
           "
         />
@@ -110,10 +115,9 @@ function SideBar({ activeMenu, setActiveMenu }) {
           rounded-[26px]
           border
           border-white/15
-          bg-[#160c14]/75
-          shadow-[0_25px_70px_rgba(0,0,0,0.45)]
+          bg-[#301925]/95
+          shadow-[0_25px_70px_rgba(0,0,0,0.5)]
           backdrop-blur-2xl
-          backdrop-saturate-150
           transition-all
           duration-500
           ease-out
@@ -144,15 +148,17 @@ function SideBar({ activeMenu, setActiveMenu }) {
             border-white/20
             bg-white/10
             text-white
-            shadow-[0_8px_25px_rgba(0,0,0,0.3)]
-            backdrop-blur-xl
             transition-all
             duration-300
             hover:scale-105
             hover:bg-white/20
           "
         >
-          <X size={20} strokeWidth={1.8} />
+          <X
+            size={20}
+            strokeWidth={1.8}
+            className="text-white"
+          />
         </button>
 
         {/* Sidebar Glow */}
@@ -166,7 +172,7 @@ function SideBar({ activeMenu, setActiveMenu }) {
             w-20
             -translate-x-1/2
             rounded-full
-            bg-[#b96782]/25
+            bg-[#b96782]/30
             blur-3xl
           "
         />
@@ -207,12 +213,23 @@ function SideBar({ activeMenu, setActiveMenu }) {
                   duration-300
                   ${
                     active
-                      ? "bg-[#b96782]/85 text-white shadow-[0_8px_25px_rgba(185,103,130,0.35)]"
-                      : "text-white/55 hover:bg-white/10 hover:text-white"
+                      ? `
+                        bg-[#b96782]
+                        text-white
+                        shadow-[0_8px_25px_rgba(185,103,130,0.4)]
+                      `
+                      : `
+                        text-white/65
+                        hover:bg-white/10
+                        hover:text-white
+                      `
                   }
                 `}
               >
-                <Icon size={19} strokeWidth={1.7} />
+                <Icon
+                  size={19}
+                  strokeWidth={1.7}
+                />
 
                 <span className="text-[9px]">
                   {item.label}
@@ -238,7 +255,7 @@ function SideBar({ activeMenu, setActiveMenu }) {
         </nav>
       </aside>
 
-      {/* ==================== WHATSAPP FLOATING BUTTON ==================== */}
+      {/* ==================== WHATSAPP BUTTON ==================== */}
       <div
         className="
           fixed
@@ -269,32 +286,14 @@ function SideBar({ activeMenu, setActiveMenu }) {
             hover:shadow-[0_12px_30px_rgba(37,211,102,0.45)]
           "
         >
-          {/* WhatsApp Icon */}
-          <svg
-            viewBox="0 0 32 32"
+          <FaWhatsapp
+            size={30}
             className="
-              h-7
-              w-7
               transition-transform
               duration-300
               group-hover:scale-110
             "
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 3.5C9.1 3.5 3.5 9.1 3.5 16c0 2.2.6 4.3 1.7 6.1L3.5 28.5l6.6-1.7c1.8 1 3.8 1.5 5.9 1.5 6.9 0 12.5-5.6 12.5-12.5S22.9 3.5 16 3.5Z"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-
-            <path
-              d="M11.2 9.8c.3-.4.7-.5 1.1-.2l1.8 1.3c.4.3.5.8.2 1.2l-.8 1.1c.9 1.7 2.2 3 3.9 3.9l1.1-.8c.4-.3.9-.2 1.2.2l1.3 1.8c.3.4.2.9-.2 1.2l-.8.6c-.6.5-1.4.7-2.1.4-2.2-.8-4.2-2.1-5.8-3.7-1.6-1.6-2.9-3.6-3.7-5.8-.3-.7-.1-1.5.4-2.1l.4-.9Z"
-              fill="currentColor"
-            />
-          </svg>
+          />
 
           {/* Hover Label */}
           <span
