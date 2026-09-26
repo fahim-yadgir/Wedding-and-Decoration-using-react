@@ -8,18 +8,16 @@ function App() {
   const [activeType, setActiveType] = useState("wedding");
   const [activeMenu, setActiveMenu] = useState("home");
 
+  // =========================================================
+  // SWITCH BETWEEN WEDDING AND DECORATION
+  // =========================================================
   const handleTypeChange = (type) => {
     setActiveType(type);
-    setActiveMenu("home");
-
-    setTimeout(() => {
-      document.getElementById("home")?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 50);
   };
 
+  // =========================================================
+  // HANDLE SIDEBAR MENU
+  // =========================================================
   const handleMenuChange = (menu) => {
     setActiveMenu(menu);
 
@@ -31,16 +29,26 @@ function App() {
 
   return (
     <div className="relative min-h-screen w-full overflow-x-hidden">
+
+      {/* =====================================================
+          TOP BAR
+      ===================================================== */}
       <TopBar
         activeType={activeType}
         setActiveType={handleTypeChange}
       />
 
+      {/* =====================================================
+          SIDEBAR
+      ===================================================== */}
       <SideBar
         activeMenu={activeMenu}
         setActiveMenu={handleMenuChange}
       />
 
+      {/* =====================================================
+          MAIN CONTENT
+      ===================================================== */}
       <main className="min-h-screen w-full">
         {activeType === "wedding" ? (
           <Wedding setActiveMenu={setActiveMenu} />
@@ -48,6 +56,7 @@ function App() {
           <Decoration setActiveMenu={setActiveMenu} />
         )}
       </main>
+
     </div>
   );
 }
