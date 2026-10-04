@@ -13,16 +13,11 @@ function App() {
   // =========================================================
   const handleTypeChange = (type) => {
     setActiveType(type);
-
-    // Reset sidebar menu to Home
     setActiveMenu("home");
 
-    // Start the selected page from the top
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
+    // Always scroll to the very top when clicking
+    // Wedding or Decoration
+    window.scrollTo(0, 0);
   };
 
   // =========================================================
