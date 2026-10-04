@@ -13,6 +13,16 @@ function App() {
   // =========================================================
   const handleTypeChange = (type) => {
     setActiveType(type);
+
+    // Reset sidebar menu to Home
+    setActiveMenu("home");
+
+    // Start the selected page from the top
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
   };
 
   // =========================================================
@@ -21,10 +31,14 @@ function App() {
   const handleMenuChange = (menu) => {
     setActiveMenu(menu);
 
-    document.getElementById(menu)?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    const section = document.getElementById(menu);
+
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
   return (
