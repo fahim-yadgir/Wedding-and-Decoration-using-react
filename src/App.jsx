@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
 import TopBar from "./components/TopBar";
 import SideBar from "./components/SideBar";
 import Wedding from "./pages/Wedding";
@@ -9,19 +9,47 @@ function App() {
   const [activeMenu, setActiveMenu] = useState("home");
 
   // =========================================================
-  // SWITCH BETWEEN WEDDING AND DECORATION
+  // FORCE PAGE TO TOP
   // =========================================================
-  const handleTypeChange = (type) => {
-    setActiveType(type);
-    setActiveMenu("home");
+  const goToTop = () => {
+    // Disable smooth scrolling temporarily
+    document.documentElement.style.scrollBehavior = "auto";
+    document.body.style.scrollBehavior = "auto";
 
-    // Always scroll to the very top when clicking
-    // Wedding or Decoration
     window.scrollTo(0, 0);
+
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   };
 
   // =========================================================
-  // HANDLE SIDEBAR MENU
+  // WHEN WEDDING / DECORATION CHANGES
+  // =========================================================
+  useLayoutEffect(() => {
+    goToTop();
+  }, [activeType]);
+
+  // =========================================================
+  // SWITCH WEDDING / DECORATION
+  // =========================================================
+  const handleTypeChange = (type) => {
+    // Immediately go to top
+    goToTop();
+
+    // Change page
+    setActiveType(type);
+
+    // Reset menu
+    setActiveMenu("home");
+
+    // Force top again after React renders the new page
+    requestAnimationFrame(() => {
+      goToTop();
+    });
+  };
+
+  // =========================================================
+  // SIDEBAR MENU
   // =========================================================
   const handleMenuChange = (menu) => {
     setActiveMenu(menu);
@@ -29,8 +57,9 @@ function App() {
     const section = document.getElementById(menu);
 
     if (section) {
+      // Direct jump - NO SMOOTH SCROLL
       section.scrollIntoView({
-        behavior: "smooth",
+        behavior: "auto",
         block: "start",
       });
     }
