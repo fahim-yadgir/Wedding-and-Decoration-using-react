@@ -25,25 +25,20 @@ function Wedding({ setActiveMenu }) {
   ========================================================= */
 
   const animationStyles = `
-    /* ==================== CINEMATIC HERO ZOOM ==================== */
-
     @keyframes cinematicZoom {
       from {
-        transform: scale(1.05);
+        transform: scale(1.04);
       }
 
       to {
-        transform: scale(1.14);
+        transform: scale(1.09);
       }
     }
-
-
-    /* ==================== FADE UP ==================== */
 
     @keyframes weddingFadeUp {
       from {
         opacity: 0;
-        transform: translateY(35px);
+        transform: translateY(25px);
       }
 
       to {
@@ -52,66 +47,27 @@ function Wedding({ setActiveMenu }) {
       }
     }
 
-
-    /* ==================== SLIDE LEFT ==================== */
-
-    @keyframes weddingSlideLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-45px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-
-    /* ==================== SLIDE RIGHT ==================== */
-
-    @keyframes weddingSlideRight {
-      from {
-        opacity: 0;
-        transform: translateX(45px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-
-    /* ==================== FLOATING LIGHT ==================== */
-
     @keyframes floatingLight {
       0%,
       100% {
-        transform: translate(0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
       }
 
       50% {
-        transform: translate(45px, -30px) scale(1.12);
+        transform: translate3d(25px, -20px, 0) scale(1.06);
       }
     }
-
-
-    /* ==================== FLOATING LIGHT REVERSE ==================== */
 
     @keyframes floatingLightReverse {
       0%,
       100% {
-        transform: translate(0, 0) scale(1);
+        transform: translate3d(0, 0, 0) scale(1);
       }
 
       50% {
-        transform: translate(-40px, 35px) scale(1.12);
+        transform: translate3d(-25px, 20px, 0) scale(1.06);
       }
     }
-
-
-    /* ==================== SCROLL INDICATOR ==================== */
 
     @keyframes weddingScrollLine {
       0%,
@@ -128,125 +84,70 @@ function Wedding({ setActiveMenu }) {
       }
     }
 
-
-    /* ==================== GLOW ==================== */
-
-    @keyframes weddingGlow {
-      0%,
-      100% {
-        opacity: 0.3;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 0.7;
-        transform: scale(1.08);
-      }
-    }
-
-
-    /* =========================================================
-       HERO ANIMATIONS
-    ========================================================= */
-
     .wedding-cinematic-image {
-      animation: cinematicZoom 14s ease-in-out infinite alternate;
+      animation: cinematicZoom 20s ease-in-out infinite alternate;
+      will-change: transform;
     }
 
     .wedding-floating-light {
-      animation: floatingLight 9s ease-in-out infinite;
+      animation: floatingLight 12s ease-in-out infinite;
+      will-change: transform;
     }
 
     .wedding-floating-light-reverse {
-      animation: floatingLightReverse 11s ease-in-out infinite;
+      animation: floatingLightReverse 14s ease-in-out infinite;
+      will-change: transform;
     }
 
     .wedding-scroll-line {
       animation: weddingScrollLine 1.8s ease-in-out infinite;
     }
 
-
-    /* =========================================================
-       HERO TEXT ANIMATIONS
-    ========================================================= */
-
-    .wedding-fade-up {
-      animation: weddingFadeUp 0.9s ease-out both;
-    }
-
-    .wedding-slide-left {
-      animation: weddingSlideLeft 0.9s ease-out both;
-    }
-
-    .wedding-slide-right {
-      animation: weddingSlideRight 0.9s ease-out both;
-    }
-
-
-    /* =========================================================
-       SCROLL REVEAL
-    ========================================================= */
-
     .animate-on-scroll {
       opacity: 0;
-      transform: translateY(45px);
+      transform: translate3d(0, 30px, 0);
       transition:
-        opacity 0.9s ease,
-        transform 0.9s ease;
+        opacity 0.7s ease,
+        transform 0.7s ease;
     }
 
     .animate-on-scroll.is-visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
-
-
-    /* =========================================================
-       SCROLL REVEAL LEFT
-    ========================================================= */
 
     .animate-on-scroll-left {
       opacity: 0;
-      transform: translateX(-55px);
+      transform: translate3d(-35px, 0, 0);
       transition:
-        opacity 1s ease,
-        transform 1s ease;
+        opacity 0.8s ease,
+        transform 0.8s ease;
     }
 
     .animate-on-scroll-left.is-visible {
       opacity: 1;
-      transform: translateX(0);
+      transform: translate3d(0, 0, 0);
     }
-
-
-    /* =========================================================
-       SCROLL REVEAL RIGHT
-    ========================================================= */
 
     .animate-on-scroll-right {
       opacity: 0;
-      transform: translateX(55px);
+      transform: translate3d(35px, 0, 0);
       transition:
-        opacity 1s ease,
-        transform 1s ease;
+        opacity 0.8s ease,
+        transform 0.8s ease;
     }
 
     .animate-on-scroll-right.is-visible {
       opacity: 1;
-      transform: translateX(0);
+      transform: translate3d(0, 0, 0);
     }
-
-
-    /* =========================================================
-       SCALE REVEAL
-    ========================================================= */
 
     .animate-scale {
       opacity: 0;
-      transform: scale(0.92);
+      transform: scale(0.96);
       transition:
-        opacity 0.9s ease,
-        transform 0.9s ease;
+        opacity 0.7s ease,
+        transform 0.7s ease;
     }
 
     .animate-scale.is-visible {
@@ -254,50 +155,41 @@ function Wedding({ setActiveMenu }) {
       transform: scale(1);
     }
 
-
-    /* =========================================================
-       LUXURY CARD HOVER
-    ========================================================= */
-
     .luxury-card {
       transition:
-        transform 0.5s ease,
-        box-shadow 0.5s ease,
-        border-color 0.5s ease;
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
     }
 
     .luxury-card:hover {
-      transform: translateY(-8px);
+      transform: translate3d(0, -6px, 0);
     }
-
-
-    /* =========================================================
-       LUXURY IMAGE HOVER
-    ========================================================= */
 
     .luxury-image {
       transition:
-        transform 0.8s ease,
-        filter 0.8s ease;
+        transform 0.6s ease,
+        filter 0.6s ease;
     }
 
     .luxury-image:hover {
-      transform: scale(1.04);
+      transform: scale(1.03);
     }
 
-
-    /* =========================================================
-       REDUCED MOTION
-    ========================================================= */
+    /*
+      Helps the browser skip rendering large sections
+      until they are close to the viewport.
+    */
+    .performance-section {
+      content-visibility: auto;
+      contain-intrinsic-size: 800px;
+    }
 
     @media (prefers-reduced-motion: reduce) {
       .wedding-cinematic-image,
       .wedding-floating-light,
       .wedding-floating-light-reverse,
       .wedding-scroll-line,
-      .wedding-fade-up,
-      .wedding-slide-left,
-      .wedding-slide-right,
       .animate-on-scroll,
       .animate-on-scroll-left,
       .animate-on-scroll-right,
@@ -306,6 +198,23 @@ function Wedding({ setActiveMenu }) {
         transition: none !important;
         transform: none !important;
         opacity: 1 !important;
+      }
+
+      .luxury-card,
+      .luxury-image {
+        transition: none !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wedding-floating-light,
+      .wedding-floating-light-reverse {
+        animation: none;
+        opacity: 0.5;
+      }
+
+      .wedding-cinematic-image {
+        animation-duration: 25s;
       }
     }
   `;
@@ -402,18 +311,19 @@ function Wedding({ setActiveMenu }) {
   ];
 
   /* =========================================================
-     WHATSAPP HANDLER
+     WHATSAPP
   ========================================================= */
 
-  const handleWhatsApp = () => {
-    const phoneNumber = "91XXXXXXXXXX";
+  const whatsappNumber = "91XXXXXXXXXX";
 
+  const handleWhatsApp = () => {
     const message =
       "Hello, I am interested in your wedding photography and videography services.";
 
     window.open(
-      `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
-      "_blank"
+      `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`,
+      "_blank",
+      "noopener,noreferrer"
     );
   };
 
@@ -436,13 +346,12 @@ function Wedding({ setActiveMenu }) {
 
     const updateActiveSection = () => {
       const scrollPosition = window.scrollY + 150;
-
       let currentSection = "home";
 
-      sectionIds.forEach((id) => {
+      for (const id of sectionIds) {
         const section = document.getElementById(id);
 
-        if (!section) return;
+        if (!section) continue;
 
         const sectionTop =
           section.getBoundingClientRect().top + window.scrollY;
@@ -450,19 +359,17 @@ function Wedding({ setActiveMenu }) {
         if (scrollPosition >= sectionTop) {
           currentSection = id;
         }
-      });
+      }
 
       setActiveMenu(currentSection);
-
       ticking = false;
     };
 
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateActiveSection);
+      if (ticking) return;
 
-        ticking = true;
-      }
+      ticking = true;
+      window.requestAnimationFrame(updateActiveSection);
     };
 
     updateActiveSection();
@@ -471,7 +378,9 @@ function Wedding({ setActiveMenu }) {
       passive: true,
     });
 
-    window.addEventListener("resize", handleScroll);
+    window.addEventListener("resize", handleScroll, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -480,7 +389,7 @@ function Wedding({ setActiveMenu }) {
   }, [setActiveMenu]);
 
   /* =========================================================
-     SCROLL ANIMATION OBSERVER
+     SCROLL REVEAL
   ========================================================= */
 
   useEffect(() => {
@@ -488,19 +397,20 @@ function Wedding({ setActiveMenu }) {
       ".animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right, .animate-scale"
     );
 
+    if (!animatedElements.length) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+          if (!entry.isIntersecting) return;
 
-            observer.unobserve(entry.target);
-          }
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
         });
       },
       {
-        threshold: 0.15,
-        rootMargin: "0px 0px -60px 0px",
+        threshold: 0.08,
+        rootMargin: "0px 0px -40px 0px",
       }
     );
 
@@ -519,22 +429,17 @@ function Wedding({ setActiveMenu }) {
 
   return (
     <>
-      {/* ==================== ANIMATION STYLES ==================== */}
-
       <style>{animationStyles}</style>
-
-      {/* ==================== MAIN WEDDING PAGE ==================== */}
 
       <div className="min-h-screen w-full overflow-x-hidden bg-[#f8f3ef] text-[#301925]">
 
         {/* =====================================================
-            HERO SECTION
+            HERO
         ===================================================== */}
 
         <section
           id="home"
           className="
-            scroll-section
             relative
             min-h-screen
             w-full
@@ -544,12 +449,16 @@ function Wedding({ setActiveMenu }) {
         >
           <div className="absolute inset-0 overflow-hidden">
 
-            {/* Hero Image */}
+            {/* HERO IMAGE
+                Important image:
+                eager + high priority
+            */}
 
             <img
               src="/images/wedding-hero.webp"
               alt="Beautiful wedding"
               fetchPriority="high"
+              loading="eager"
               decoding="async"
               className="
                 wedding-cinematic-image
@@ -566,7 +475,7 @@ function Wedding({ setActiveMenu }) {
               "
             />
 
-            {/* Dark Overlay */}
+            {/* Overlay */}
 
             <div
               className="
@@ -579,8 +488,6 @@ function Wedding({ setActiveMenu }) {
               "
             />
 
-            {/* Bottom Gradient */}
-
             <div
               className="
                 absolute
@@ -592,7 +499,7 @@ function Wedding({ setActiveMenu }) {
               "
             />
 
-            {/* Pink Cinematic Light */}
+            {/* Lightweight cinematic lights */}
 
             <div
               className="
@@ -600,15 +507,13 @@ function Wedding({ setActiveMenu }) {
                 absolute
                 -left-20
                 top-1/4
-                h-72
-                w-72
+                h-64
+                w-64
                 rounded-full
-                bg-[#d98fa8]/20
-                blur-[100px]
+                bg-[#d98fa8]/15
+                blur-[70px]
               "
             />
-
-            {/* Gold Cinematic Light */}
 
             <div
               className="
@@ -616,11 +521,11 @@ function Wedding({ setActiveMenu }) {
                 absolute
                 -right-20
                 bottom-1/4
-                h-80
-                w-80
+                h-64
+                w-64
                 rounded-full
-                bg-[#f1d09b]/15
-                blur-[110px]
+                bg-[#f1d09b]/10
+                blur-[70px]
               "
             />
           </div>
@@ -646,8 +551,6 @@ function Wedding({ setActiveMenu }) {
           >
             <div className="max-w-xl">
 
-              {/* Hero Small Text */}
-
               <p
                 className="
                   mb-4
@@ -657,13 +560,11 @@ function Wedding({ setActiveMenu }) {
                   text-[#e6bd85]
                   opacity-0
                   sm:text-xs
-                  animate-[weddingFadeUp_1s_ease-out_0.2s_forwards]
+                  animate-[weddingFadeUp_0.8s_ease-out_0.15s_forwards]
                 "
               >
                 Wedding Photography & Films
               </p>
-
-              {/* Hero Heading */}
 
               <h1
                 className="
@@ -675,7 +576,7 @@ function Wedding({ setActiveMenu }) {
                   sm:text-5xl
                   md:text-6xl
                   lg:text-7xl
-                  animate-[weddingFadeUp_1.2s_ease-out_0.45s_forwards]
+                  animate-[weddingFadeUp_0.9s_ease-out_0.3s_forwards]
                 "
               >
                 Your Story.
@@ -690,8 +591,6 @@ function Wedding({ setActiveMenu }) {
                 Captured.
               </h1>
 
-              {/* Decorative Line */}
-
               <div
                 className="
                   mt-5
@@ -699,7 +598,7 @@ function Wedding({ setActiveMenu }) {
                   items-center
                   gap-3
                   opacity-0
-                  animate-[weddingFadeUp_1s_ease-out_0.7s_forwards]
+                  animate-[weddingFadeUp_0.8s_ease-out_0.5s_forwards]
                 "
               >
                 <div className="h-px w-12 bg-[#d4ad72]" />
@@ -713,8 +612,6 @@ function Wedding({ setActiveMenu }) {
                 <div className="h-px w-12 bg-[#d4ad72]" />
               </div>
 
-              {/* Hero Description */}
-
               <p
                 className="
                   mt-5
@@ -724,14 +621,12 @@ function Wedding({ setActiveMenu }) {
                   text-gray-200
                   opacity-0
                   sm:text-base
-                  animate-[weddingFadeUp_1.1s_ease-out_0.85s_forwards]
+                  animate-[weddingFadeUp_0.9s_ease-out_0.65s_forwards]
                 "
               >
                 We capture the emotions, celebrations and beautiful moments
                 that make your wedding unforgettable.
               </p>
-
-              {/* Hero Buttons */}
 
               <div
                 className="
@@ -740,7 +635,7 @@ function Wedding({ setActiveMenu }) {
                   flex-wrap
                   gap-3
                   opacity-0
-                  animate-[weddingFadeUp_1.1s_ease-out_1.05s_forwards]
+                  animate-[weddingFadeUp_0.9s_ease-out_0.8s_forwards]
                 "
               >
                 <button
@@ -760,10 +655,9 @@ function Wedding({ setActiveMenu }) {
                     text-[#2b1722]
                     shadow-xl
                     transition-all
-                    duration-500
+                    duration-300
                     hover:-translate-y-1
                     hover:bg-[#f0cc9b]
-                    hover:shadow-[0_15px_40px_rgba(230,189,133,0.25)]
                   "
                 >
                   Book Your Wedding
@@ -798,9 +692,8 @@ function Wedding({ setActiveMenu }) {
                     text-sm
                     text-white
                     transition-all
-                    duration-500
+                    duration-300
                     hover:-translate-y-1
-                    hover:border-white/80
                     hover:bg-white/10
                   "
                 >
@@ -810,7 +703,7 @@ function Wedding({ setActiveMenu }) {
             </div>
           </div>
 
-          {/* Scroll Indicator */}
+          {/* Scroll */}
 
           <div
             className="
@@ -820,7 +713,7 @@ function Wedding({ setActiveMenu }) {
               z-20
               -translate-x-1/2
               opacity-0
-              animate-[weddingFadeUp_1s_ease-out_1.7s_forwards]
+              animate-[weddingFadeUp_0.8s_ease-out_1.3s_forwards]
             "
           >
             <div className="flex flex-col items-center gap-2">
@@ -843,13 +736,13 @@ function Wedding({ setActiveMenu }) {
         </section>
 
         {/* =====================================================
-            ABOUT SECTION
+            ABOUT
         ===================================================== */}
 
         <section
           id="about"
           className="
-            scroll-section
+            performance-section
             relative
             min-h-screen
             bg-[#f8f3ef]
@@ -865,8 +758,6 @@ function Wedding({ setActiveMenu }) {
           <div className="mx-auto w-full max-w-7xl">
 
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-
-              {/* About Image */}
 
               <div className="animate-on-scroll-left">
                 <div className="relative">
@@ -889,6 +780,7 @@ function Wedding({ setActiveMenu }) {
                     alt="Wedding photography"
                     loading="lazy"
                     decoding="async"
+                    fetchPriority="low"
                     className="
                       luxury-image
                       relative
@@ -925,8 +817,6 @@ function Wedding({ setActiveMenu }) {
                   </div>
                 </div>
               </div>
-
-              {/* About Content */}
 
               <div className="animate-on-scroll-right">
 
@@ -1015,10 +905,9 @@ function Wedding({ setActiveMenu }) {
                     text-sm
                     text-white
                     transition-all
-                    duration-500
+                    duration-300
                     hover:-translate-y-1
                     hover:bg-[#a45673]
-                    hover:shadow-lg
                   "
                 >
                   Know More
@@ -1030,13 +919,13 @@ function Wedding({ setActiveMenu }) {
         </section>
 
         {/* =====================================================
-            GALLERY SECTION
+            GALLERY
         ===================================================== */}
 
         <section
           id="gallery"
           className="
-            scroll-section
+            performance-section
             min-h-screen
             bg-[#fffaf7]
             px-5
@@ -1047,8 +936,6 @@ function Wedding({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-
-            {/* Gallery Heading */}
 
             <div className="text-center animate-on-scroll">
 
@@ -1078,8 +965,6 @@ function Wedding({ setActiveMenu }) {
               </p>
             </div>
 
-            {/* Gallery Images */}
-
             <div className="mt-10 columns-2 gap-3 sm:columns-3 lg:gap-5">
 
               {galleryImages.map((image, index) => (
@@ -1087,9 +972,6 @@ function Wedding({ setActiveMenu }) {
                   key={image}
                   type="button"
                   onClick={() => setActiveImage(index)}
-                  style={{
-                    transitionDelay: `${index * 100}ms`,
-                  }}
                   className="
                     animate-on-scroll
                     group
@@ -1101,19 +983,23 @@ function Wedding({ setActiveMenu }) {
                     rounded-xl
                     lg:mb-5
                   "
+                  style={{
+                    transitionDelay: `${Math.min(index * 80, 400)}ms`,
+                  }}
                 >
                   <img
                     src={image}
                     alt={`Wedding moment ${index + 1}`}
                     loading="lazy"
                     decoding="async"
+                    fetchPriority="low"
                     className="
                       block
                       h-auto
                       w-full
                       object-cover
                       transition-transform
-                      duration-700
+                      duration-500
                       group-hover:scale-105
                     "
                   />
@@ -1125,13 +1011,13 @@ function Wedding({ setActiveMenu }) {
         </section>
 
         {/* =====================================================
-            SERVICES SECTION
+            SERVICES
         ===================================================== */}
 
         <section
           id="services"
           className="
-            scroll-section
+            performance-section
             min-h-screen
             bg-[#f5eee9]
             px-5
@@ -1142,8 +1028,6 @@ function Wedding({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-
-            {/* Services Heading */}
 
             <div className="text-center animate-on-scroll">
 
@@ -1173,8 +1057,6 @@ function Wedding({ setActiveMenu }) {
               </p>
             </div>
 
-            {/* Service Cards */}
-
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
               {services.map((service, index) => {
@@ -1184,7 +1066,7 @@ function Wedding({ setActiveMenu }) {
                   <div
                     key={service.title}
                     style={{
-                      transitionDelay: `${index * 120}ms`,
+                      transitionDelay: `${Math.min(index * 80, 400)}ms`,
                     }}
                     className="
                       animate-on-scroll
@@ -1212,8 +1094,8 @@ function Wedding({ setActiveMenu }) {
                         rounded-full
                         bg-[#f5e5e9]
                         transition-all
-                        duration-500
-                        group-hover:scale-110
+                        duration-300
+                        group-hover:scale-105
                         group-hover:bg-[#8f4662]
                       "
                     >
@@ -1223,7 +1105,7 @@ function Wedding({ setActiveMenu }) {
                         className="
                           text-[#9d526e]
                           transition-colors
-                          duration-500
+                          duration-300
                           group-hover:text-white
                         "
                       />
@@ -1248,8 +1130,8 @@ function Wedding({ setActiveMenu }) {
                         text-xs
                         font-medium
                         text-[#9d526e]
-                        transition-all
-                        duration-300
+                        transition-colors
+                        duration-200
                         hover:text-[#8f4662]
                       "
                     >
@@ -1257,11 +1139,7 @@ function Wedding({ setActiveMenu }) {
 
                       <ArrowRight
                         size={14}
-                        className="
-                          transition-transform
-                          duration-300
-                          group-hover:translate-x-1
-                        "
+                        className="transition-transform duration-200 group-hover:translate-x-1"
                       />
                     </button>
                   </div>
@@ -1273,13 +1151,13 @@ function Wedding({ setActiveMenu }) {
         </section>
 
         {/* =====================================================
-            PACKAGES SECTION
+            PACKAGES
         ===================================================== */}
 
         <section
           id="packages"
           className="
-            scroll-section
+            performance-section
             min-h-screen
             bg-[#291622]
             px-5
@@ -1291,8 +1169,6 @@ function Wedding({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-
-            {/* Packages Heading */}
 
             <div className="text-center animate-on-scroll">
 
@@ -1322,15 +1198,13 @@ function Wedding({ setActiveMenu }) {
               </p>
             </div>
 
-            {/* Package Cards */}
-
             <div className="mt-10 grid gap-5 lg:grid-cols-3">
 
               {packages.map((pkg, index) => (
                 <div
                   key={pkg.name}
                   style={{
-                    transitionDelay: `${index * 150}ms`,
+                    transitionDelay: `${Math.min(index * 100, 300)}ms`,
                   }}
                   className={`
                     animate-on-scroll
@@ -1343,12 +1217,11 @@ function Wedding({ setActiveMenu }) {
                     p-7
                     ${
                       pkg.popular
-                        ? "border-[#d6a86e] bg-[#3a202d] shadow-[0_15px_50px_rgba(0,0,0,0.3)] hover:shadow-[0_25px_60px_rgba(214,168,110,0.12)]"
+                        ? "border-[#d6a86e] bg-[#3a202d] shadow-[0_15px_50px_rgba(0,0,0,0.3)]"
                         : "border-white/10 bg-[#321c28]"
                     }
                   `}
                 >
-
                   {pkg.popular && (
                     <div
                       className="
@@ -1441,7 +1314,6 @@ function Wedding({ setActiveMenu }) {
                     Enquire on WhatsApp
                     <ArrowRight size={15} />
                   </button>
-
                 </div>
               ))}
 
@@ -1450,13 +1322,13 @@ function Wedding({ setActiveMenu }) {
         </section>
 
         {/* =====================================================
-            VIDEOS SECTION
+            VIDEOS
         ===================================================== */}
 
         <section
           id="videos"
           className="
-            scroll-section
+            performance-section
             min-h-screen
             bg-[#fffaf7]
             px-5
@@ -1467,8 +1339,6 @@ function Wedding({ setActiveMenu }) {
           "
         >
           <div className="mx-auto max-w-7xl">
-
-            {/* Video Heading */}
 
             <div className="text-center animate-on-scroll">
 
@@ -1491,10 +1361,7 @@ function Wedding({ setActiveMenu }) {
 
                 <div className="h-px w-12 bg-[#c9a66b]" />
               </div>
-
             </div>
-
-            {/* Videos */}
 
             <div className="mt-10 grid gap-6 md:grid-cols-2">
 
@@ -1511,7 +1378,7 @@ function Wedding({ setActiveMenu }) {
                   bg-white
                   shadow-sm
                   transition-all
-                  duration-500
+                  duration-300
                   hover:-translate-y-2
                   hover:shadow-xl
                 "
@@ -1527,9 +1394,6 @@ function Wedding({ setActiveMenu }) {
                       aspect-video
                       w-full
                       object-cover
-                      transition-transform
-                      duration-700
-                      group-hover:scale-[1.02]
                     "
                   >
                     <source
@@ -1566,7 +1430,7 @@ function Wedding({ setActiveMenu }) {
                   bg-white
                   shadow-sm
                   transition-all
-                  duration-500
+                  duration-300
                   hover:-translate-y-2
                   hover:shadow-xl
                 "
@@ -1582,9 +1446,6 @@ function Wedding({ setActiveMenu }) {
                       aspect-video
                       w-full
                       object-cover
-                      transition-transform
-                      duration-700
-                      group-hover:scale-[1.02]
                     "
                   >
                     <source
@@ -1613,13 +1474,13 @@ function Wedding({ setActiveMenu }) {
         </section>
 
         {/* =====================================================
-            CONTACT SECTION
+            CONTACT
         ===================================================== */}
 
         <section
           id="contact"
           className="
-            scroll-section
+            performance-section
             min-h-screen
             bg-[#24151F]
             px-5
@@ -1628,7 +1489,7 @@ function Wedding({ setActiveMenu }) {
           "
         >
 
-          {/* Contact Heading */}
+          {/* Heading */}
 
           <div className="mx-auto max-w-6xl text-center animate-on-scroll">
 
@@ -1665,11 +1526,9 @@ function Wedding({ setActiveMenu }) {
                 bg-[#321D2A]
                 p-6
                 transition-all
-                duration-500
+                duration-300
                 hover:-translate-y-2
                 hover:border-[#D98FA8]
-                hover:bg-[#3A2230]
-                hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)]
               "
             >
               <div
@@ -1683,8 +1542,8 @@ function Wedding({ setActiveMenu }) {
                   rounded-xl
                   bg-[#D98FA8]/15
                   transition-transform
-                  duration-500
-                  group-hover:scale-110
+                  duration-300
+                  group-hover:scale-105
                 "
               >
                 <Phone
@@ -1709,9 +1568,9 @@ function Wedding({ setActiveMenu }) {
             {/* WhatsApp */}
 
             <a
-              href="https://wa.me/91XXXXXXXXXX"
+              href={`https://wa.me/${whatsappNumber}`}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="
                 animate-on-scroll
                 group
@@ -1721,11 +1580,9 @@ function Wedding({ setActiveMenu }) {
                 bg-[#321D2A]
                 p-6
                 transition-all
-                duration-500
+                duration-300
                 hover:-translate-y-2
                 hover:border-[#25D366]
-                hover:bg-[#3A2230]
-                hover:shadow-[0_20px_50px_rgba(37,211,102,0.12)]
               "
             >
               <div
@@ -1739,8 +1596,8 @@ function Wedding({ setActiveMenu }) {
                   rounded-xl
                   bg-[#25D366]/15
                   transition-transform
-                  duration-500
-                  group-hover:scale-110
+                  duration-300
+                  group-hover:scale-105
                 "
               >
                 <MessageCircle
@@ -1775,10 +1632,9 @@ function Wedding({ setActiveMenu }) {
                 bg-[#321D2A]
                 p-6
                 transition-all
-                duration-500
+                duration-300
                 hover:-translate-y-2
                 hover:border-[#D9B56D]
-                hover:bg-[#3A2230]
               "
             >
               <div
@@ -1792,8 +1648,8 @@ function Wedding({ setActiveMenu }) {
                   rounded-xl
                   bg-[#D9B56D]/15
                   transition-transform
-                  duration-500
-                  group-hover:scale-110
+                  duration-300
+                  group-hover:scale-105
                 "
               >
                 <Mail
@@ -1827,10 +1683,9 @@ function Wedding({ setActiveMenu }) {
                 bg-[#321D2A]
                 p-6
                 transition-all
-                duration-500
+                duration-300
                 hover:-translate-y-2
                 hover:border-[#D98FA8]
-                hover:bg-[#3A2230]
               "
             >
               <div
@@ -1843,9 +1698,6 @@ function Wedding({ setActiveMenu }) {
                   justify-center
                   rounded-xl
                   bg-[#D98FA8]/15
-                  transition-transform
-                  duration-500
-                  group-hover:scale-110
                 "
               >
                 <MapPin
@@ -1923,9 +1775,9 @@ function Wedding({ setActiveMenu }) {
               </div>
 
               <a
-                href="https://wa.me/91XXXXXXXXXX"
+                href={`https://wa.me/${whatsappNumber}`}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="
                   inline-flex
                   shrink-0
@@ -1941,8 +1793,6 @@ function Wedding({ setActiveMenu }) {
                   transition-all
                   duration-300
                   hover:scale-105
-                  hover:shadow-lg
-                  hover:shadow-[#25D366]/20
                 "
               >
                 <MessageCircle size={18} />
@@ -1952,7 +1802,7 @@ function Wedding({ setActiveMenu }) {
             </div>
           </div>
 
-          {/* Services & Booking Process */}
+          {/* Services + Booking */}
 
           <div className="mx-auto mt-8 grid max-w-6xl gap-6 lg:grid-cols-2">
 
@@ -1966,8 +1816,6 @@ function Wedding({ setActiveMenu }) {
                 border-[#5A3547]
                 bg-[#321D2A]
                 p-7
-                transition-all
-                duration-500
               "
             >
 
@@ -2028,10 +1876,6 @@ function Wedding({ setActiveMenu }) {
                       bg-[#24151F]
                       px-4
                       py-3
-                      transition-all
-                      duration-300
-                      hover:-translate-y-0.5
-                      hover:border-[#6A4051]
                     "
                   >
                     <Check
@@ -2048,7 +1892,7 @@ function Wedding({ setActiveMenu }) {
               </div>
             </div>
 
-            {/* Booking Process */}
+            {/* Booking */}
 
             <div
               className="
@@ -2058,8 +1902,6 @@ function Wedding({ setActiveMenu }) {
                 border-[#5A3547]
                 bg-[#321D2A]
                 p-7
-                transition-all
-                duration-500
               "
             >
 
@@ -2153,10 +1995,11 @@ function Wedding({ setActiveMenu }) {
 
               </div>
             </div>
-
           </div>
 
-          {/* Wedding Enquiry Form */}
+          {/* =====================================================
+              ENQUIRY FORM
+          ===================================================== */}
 
           <div
             className="
@@ -2204,8 +2047,6 @@ function Wedding({ setActiveMenu }) {
                 const guests = formData.get("guests");
                 const requirements = formData.get("requirements");
 
-                const whatsappNumber = "91XXXXXXXXXX";
-
                 const message = `
 Hello, I am interested in your wedding services.
 
@@ -2224,7 +2065,8 @@ ${requirements}
                   `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
                     message
                   )}`,
-                  "_blank"
+                  "_blank",
+                  "noopener,noreferrer"
                 );
               }}
               className="grid gap-5 md:grid-cols-2"
@@ -2274,8 +2116,8 @@ ${requirements}
                   maxLength={10}
                   inputMode="numeric"
                   pattern="[0-9]{10}"
-                  onInput={(e) => {
-                    e.currentTarget.value = e.currentTarget.value
+                  onInput={(event) => {
+                    event.currentTarget.value = event.currentTarget.value
                       .replace(/[^0-9]/g, "")
                       .slice(0, 10);
                   }}
@@ -2484,7 +2326,6 @@ ${requirements}
                     duration-300
                     hover:-translate-y-1
                     hover:bg-[#C97894]
-                    hover:shadow-[#D98FA8]/20
                   "
                 >
                   <Send size={19} />
@@ -2497,7 +2338,7 @@ ${requirements}
           </div>
 
           {/* =====================================================
-              FAQ SECTION
+              FAQ
           ===================================================== */}
 
           <div className="mx-auto mt-8 max-w-6xl">
@@ -2541,7 +2382,7 @@ ${requirements}
                 <div
                   key={faq.question}
                   style={{
-                    transitionDelay: `${index * 120}ms`,
+                    transitionDelay: `${Math.min(index * 80, 300)}ms`,
                   }}
                   className="
                     animate-on-scroll
@@ -2551,7 +2392,7 @@ ${requirements}
                     bg-[#321D2A]
                     p-6
                     transition-all
-                    duration-500
+                    duration-300
                     hover:-translate-y-1
                     hover:border-[#D98FA8]/50
                   "
@@ -2570,7 +2411,7 @@ ${requirements}
           </div>
 
           {/* =====================================================
-              LOCATION SECTION
+              LOCATION
           ===================================================== */}
 
           <div
@@ -2608,7 +2449,7 @@ ${requirements}
                 <a
                   href="https://www.google.com/maps/search/?api=1&query=Pune%2C%20Maharashtra"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="
                     mt-6
                     inline-flex
@@ -2628,7 +2469,6 @@ ${requirements}
                     duration-300
                     hover:-translate-y-1
                     hover:border-[#D98FA8]
-                    hover:text-[#F8E8EE]
                   "
                 >
                   <MapPin size={17} />
@@ -2706,9 +2546,9 @@ ${requirements}
             </p>
 
             <a
-              href="https://wa.me/91XXXXXXXXXX"
+              href={`https://wa.me/${whatsappNumber}`}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="
                 mt-6
                 inline-flex
@@ -2723,8 +2563,6 @@ ${requirements}
                 transition-all
                 duration-300
                 hover:scale-105
-                hover:shadow-lg
-                hover:shadow-[#25D366]/20
               "
             >
               <MessageCircle size={19} />
@@ -2774,7 +2612,7 @@ ${requirements}
         </footer>
 
         {/* =====================================================
-            IMAGE LIGHTBOX
+            LIGHTBOX
         ===================================================== */}
 
         <ImageLightbox
